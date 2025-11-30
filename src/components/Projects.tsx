@@ -1,7 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 import SideDecoration from "./SideDecoration";
 
