@@ -35,11 +35,27 @@ const Skills = () => {
                     {skillCategories.map((category, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="bg-dune-base/30 border border-dune-copper/10 p-8 rounded-2xl hover:bg-dune-base/50 hover:border-dune-orange/30 transition-all duration-500 group-hover/skills:blur-[2px] group-hover/skills:scale-95 hover:!blur-0 hover:!scale-105 hover:z-10"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: { 
+                                    opacity: 1, 
+                                    y: 0,
+                                    transition: { 
+                                        duration: 0.5, 
+                                        delay: index * 0.1,
+                                        ease: "easeOut" 
+                                    }
+                                }
+                            }}
+                            whileHover={{ 
+                                scale: 1.05,
+                                zIndex: 10,
+                                transition: { duration: 0.3 }
+                            }}
+                            className="bg-dune-base/30 border border-dune-copper/10 p-8 rounded-2xl transition-colors duration-500 hover:bg-dune-base/50 hover:border-dune-orange/30 group-hover/skills:blur-[2px] group-hover/skills:scale-95 hover:!blur-0"
                         >
                             <h3 className="text-xl text-dune-orange font-bold mb-6 flex items-center">
                                 <span className="w-2 h-2 bg-dune-orange rounded-full mr-3 shadow-[0_0_10px_rgba(255,85,0,0.8)]"></span>

@@ -57,7 +57,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     <div className="flex items-center gap-4 md:gap-8">
                         <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8 text-xs xl:text-sm tracking-widest uppercase">
                             {Object.entries(t.nav).map(([key, label], index) => {
-                                const targetId = key === 'profile' ? 'profil' : key === 'journey' ? 'parcours' : key === 'skills' ? 'competences' : key;
+                                const targetId = key === 'profile' ? 'profil' : key === 'journey' ? 'parcours' : key === 'skills' ? 'competences' : key === 'projects' ? 'projets' : key;
                                 return (
                                     <motion.a
                                         key={key}

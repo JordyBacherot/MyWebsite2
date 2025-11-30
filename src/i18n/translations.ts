@@ -87,21 +87,21 @@ export const translations: Record<Language, TranslationStructure> = {
         // Hero Section
         hero: {
             name: "Jordy Bacherot",
-            description: "Étudiant en Sciences Cognitives et Intelligence Artificielle.  ",
+            description: "Ingénieur en Intelligence Artificielle & Sciences Cognitives. Spécialisé en Formation IA et développement de solutions génératives.",
             viewProjects: "Voir mes projets",
             contactMe: "Me contacter",
         },
         // Experience Section
         experience: {
-            title: "Parcours",
-            academic: "Académique",
-            professional: "Professionnel",
+            title: "Parcours & Formations",
+            academic: "Formations Académiques",
+            professional: "Expériences Professionnelles",
             experiences: [
                 {
                     title: "Master en Sciences Cognitives",
                     organization: "IDMC",
                     period: "2024 - Présent",
-                    description: "Parcours IACH : Intelligence Artificielle Centrée Humain.",
+                    description: "Parcours IACH : Intelligence Artificielle Centrée Humain. Formation avancée en IA et cognition.",
                     descriptionPlus: "Major de M1",
                     type: "Académique"
                 },
@@ -109,7 +109,7 @@ export const translations: Record<Language, TranslationStructure> = {
                     title: "Alternance Ingénieur IA",
                     organization: "Direction du Numérique - Université de Lorraine",
                     period: "2024 - Présent",
-                    description: "Intégration de solutions d'IA générative (LLM/RAG).",
+                    description: "Intégration de solutions d'IA générative (LLM/RAG) et développement d'outils intelligents.",
                     type: "Professionnel"
                 },
                 {
@@ -124,23 +124,23 @@ export const translations: Record<Language, TranslationStructure> = {
         },
         // Skills Section
         skills: {
-            title: "Competences",
+            title: "Compétences & Expertises",
             categories: [
                 {
-                    name: "Data Science",
+                    name: "Data Science & IA",
                     skills: ["Machine Learning", "Deep Learning", "Scikit-Learn", "PyTorch", "TensorFlow/Keras"]
                 },
                 {
-                    name: "Intégration IA",
+                    name: "Intégration & Génération IA",
                     skills: ["LLMs", "RAG", "LangChain","LangGraph","LangFuse", "Ollama", "HuggingFace"]
                 },
                 {
-                    name: "Développement",
+                    name: "Développement Web & Logiciel",
                     skills: ["Python", "Java", "TypeScript", "React", "SQL", "Git", "Docker", "PostgreSQL", "Supabase"]
                 },
                 {
-                    name: "Sciences Cognitives",
-                    skills: ["Psychologie Cognitive", "Neurosciences", "Statistiques", "UX", "Enjeux de l'Intelligence Artificielle"]
+                    name: "Sciences Cognitives & UX",
+                    skills: ["Psychologie Cognitive", "Neurosciences", "Statistiques", "UX Design", "Éthique de l'IA"]
                 },
             ],
         },
