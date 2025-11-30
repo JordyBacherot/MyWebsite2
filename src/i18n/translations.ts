@@ -46,7 +46,6 @@ export interface TranslationStructure {
     projects: {
         title: string;
         details: string;
-        viewProject: string;
         items: ProjectItem[];
     };
     contact: {
@@ -87,7 +86,7 @@ export const translations: Record<Language, TranslationStructure> = {
         // Hero Section
         hero: {
             name: "Jordy Bacherot",
-            description: "Ingénieur en Intelligence Artificielle & Sciences Cognitives. Spécialisé en Formation IA et développement de solutions génératives.",
+            description: "Etudiant en Master en Sciences Cognitives et Alternant Ingénieur en Intelligence Artificielle.",
             viewProjects: "Voir mes projets",
             contactMe: "Me contacter",
         },
@@ -148,7 +147,6 @@ export const translations: Record<Language, TranslationStructure> = {
         projects: {
             title: "Projets",
             details: "Détails",
-            viewProject: "Voir le projet",
             items: [
                 {
                     title: "Création de chatbots RAG",
@@ -228,7 +226,7 @@ export const translations: Record<Language, TranslationStructure> = {
         // Hero Section
         hero: {
             name: "Jordy Bacherot",
-            description: "Student in Cognitive Sciences and Artificial Intelligence.",
+            description: "Student in Cognitive Sciences and Artificial Intelligence and Apprenticeship in Artificial Intelligence Engineering.", 
             viewProjects: "View my projects",
             contactMe: "Contact me",
         },
@@ -289,7 +287,6 @@ export const translations: Record<Language, TranslationStructure> = {
         projects: {
             title: "Projects",
             details: "Details",
-            viewProject: "View project",
             items: [
                 {
                     title: "Creation of RAG Chatbots",

@@ -70,12 +70,6 @@ const Projects = () => {
                                     <p className="text-dune-sand/90 text-lg leading-relaxed mb-8">
                                         {project.description}
                                     </p>
-
-                                    <Button asChild variant="ghost" className="text-dune-sand hover:text-white hover:bg-dune-orange transition-all duration-300 rounded-full px-6">
-                                        <a href="#" className="flex items-center gap-2">
-                                            {t.projects.viewProject} <ExternalLink size={16} />
-                                        </a>
-                                    </Button>
                                 </div>
                             </div>
                         </motion.div>
