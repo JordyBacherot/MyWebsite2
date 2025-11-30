@@ -39,7 +39,7 @@
     --radius: 0.5rem;
 
     /* Dune Light Mode (Day Desert) */
-    --dune-base: 30 25% 80%;
+    --dune-base: 30 40% 82%;
     /* Light warm sand #f5efe9 */
     --dune-sand: 20 20% 20%;
     /* Dark brown for text #3d2d26 */
@@ -108,5 +108,17 @@
 @layer utilities {
   .font-dune {
     font-family: 'Dune Rise', sans-serif;
+  }
+  
+  .bg-size-200 {
+    background-size: 200% 100%;
+  }
+  
+  .bg-pos-0 {
+    background-position: 0% 0%;
+  }
+  
+  .bg-pos-100 {
+    background-position: 100% 0%;
   }
 }

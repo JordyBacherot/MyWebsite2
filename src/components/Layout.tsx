@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Sun, Moon } from 'lucide-react';
-import { Button } from "@/components/ui/button";
+import DuneThemeToggle from './DuneThemeToggle';
+import LanguageToggle from './LanguageToggle';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -10,13 +11,21 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { scrollYProgress } = useScroll();
     const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    // Initialize from localStorage with dark mode as default
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        const savedTheme = localStorage.getItem('theme');
+        return savedTheme !== 'light'; // Default to dark mode
+    });
+    const { t } = useLanguage();
 
     useEffect(() => {
+        // Apply theme to document
         if (isDarkMode) {
             document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
         } else {
             document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
         }
     }, [isDarkMode]);
 
@@ -46,12 +55,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         Portfolio
                     </motion.div>
                     <div className="flex items-center gap-8">
-                        <nav className="hidden md:flex space-x-8 text-sm tracking-widest uppercase">
-                            {['Profil', 'Parcours', 'Competences', 'Projets', 'Contact'].map((item, index) => {
-                                const targetId = item.toLowerCase().replace('é', 'e');
+                        <nav className="hidden md:flex items-center space-x-8 text-sm tracking-widest uppercase">
+                            {Object.entries(t.nav).map(([key, label], index) => {
+                                const targetId = key === 'profile' ? 'profil' : key === 'journey' ? 'parcours' : key === 'skills' ? 'competences' : key;
                                 return (
                                     <motion.a
-                                        key={item}
+                                        key={key}
                                         href={`#${targetId}`}
                                         onClick={(e) => {
                                             e.preventDefault();
@@ -62,20 +71,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                         transition={{ delay: index * 0.1 }}
                                         className="hover:text-dune-orange transition-colors duration-300 relative group font-dune text-xs"
                                     >
-                                        {item}
+                                        {label}
                                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-dune-orange transition-all duration-300 group-hover:w-full"></span>
                                     </motion.a>
                                 );
                             })}
+                            <LanguageToggle />
                         </nav>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => setIsDarkMode(!isDarkMode)}
-                            className="text-dune-copper hover:text-dune-orange hover:bg-dune-copper/10 rounded-full transition-all duration-300"
-                        >
-                            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-                        </Button>
+                        <DuneThemeToggle 
+                            isDarkMode={isDarkMode}
+                            onToggle={() => setIsDarkMode(!isDarkMode)}
+                        />
                     </div>
                 </div>
             </header>
@@ -85,7 +91,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </main>
 
             <footer className="border-t border-dune-copper/10 py-8 text-center text-dune-sand/50 text-xs tracking-widest uppercase relative z-10">
-                <p>&copy; {new Date().getFullYear()} - Architecte de l'Esprit & du Code</p>
+                <p>&copy; {new Date().getFullYear()} - {t.footer.copyright}</p>
             </footer>
         </div>
     );

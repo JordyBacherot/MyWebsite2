@@ -33,8 +33,13 @@ const SandstormEffect = () => {
 
         // Set canvas size
         const setCanvasSize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            if (canvas.parentElement) {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+            } else {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
         };
         setCanvasSize();
         window.addEventListener('resize', setCanvasSize);
@@ -55,8 +60,8 @@ const SandstormEffect = () => {
             });
         }
 
-        // Create particles
-        const particlesPerStorm = 40;
+        // Create particles (REDUCED for performance)
+        const particlesPerStorm = 25; // Reduced from 40
         const particles: Particle[] = [];
 
         storms.forEach((storm, stormId) => {
@@ -88,9 +93,8 @@ const SandstormEffect = () => {
             time += 0.005;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Separation parameters
-            const minSeparation = 25;
-            const separationForce = 0.02; // Gentle repulsion
+            // Separation parameters (REMOVED for performance)
+            // Skip collision detection - too expensive with multiple instances
 
             // Update storms
             storms.forEach((storm) => {
@@ -127,44 +131,28 @@ const SandstormEffect = () => {
                 const turbulenceX = Math.sin(time * 0.5 + particle.turbulenceOffset) * 10;
                 const turbulenceY = Math.cos(time * 0.3 + particle.turbulenceOffset) * 10;
 
-                // 3. SEPARATION (Prevent clumping)
-                let sepX = 0;
-                let sepY = 0;
-
-                for (let j = 0; j < particles.length; j++) {
-                    if (index === j) continue;
-                    const other = particles[j];
-                    if (other.stormId !== particle.stormId) continue;
-
-                    const dx = particle.x - other.x;
-                    const dy = particle.y - other.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < minSeparation && dist > 0) {
-                        const force = (minSeparation - dist) / minSeparation;
-                        sepX += (dx / dist) * force * separationForce * 50; // Scale up for position update
-                        sepY += (dy / dist) * force * separationForce * 50;
-                    }
-                }
-
-                // 4. MOVE PARTICLE
+                // 3. MOVE PARTICLE (separation removed for performance)
                 // We interpolate current position towards target orbital position
                 // This creates a smooth, "floaty" following effect
                 const lerpFactor = 0.02; // Very low for sluggish, heavy feel
 
-                particle.x += (targetX + turbulenceX + sepX - particle.x) * lerpFactor;
-                particle.y += (targetY + turbulenceY + sepY - particle.y) * lerpFactor;
+                particle.x += (targetX + turbulenceX - particle.x) * lerpFactor;
+                particle.y += (targetY + turbulenceY - particle.y) * lerpFactor;
 
                 // Draw particle
                 const colorVariation = Math.sin(time + particle.turbulenceOffset) * 20;
-                const r = 235 + colorVariation;
-                const g = 90 + colorVariation;
-                const b = 50 + colorVariation * 0.5;
+                // Redder Spice: High Red, Medium Green (less than before), Low Blue
+                const r = 255;
+                const g = 140 + colorVariation; // Reduced green for more redness
+                const b = 40 + colorVariation * 0.5;
 
                 ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${particle.opacity})`;
+                ctx.shadowBlur = 15; // Increased glow
+                ctx.shadowColor = `rgba(${r}, ${g}, ${b}, 0.6)`;
                 ctx.beginPath();
                 ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
                 ctx.fill();
+                ctx.shadowBlur = 0; // Reset for next operations
 
                 // No trails needed for very slow movement (they would just be dots)
             });

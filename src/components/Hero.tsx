@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import SandstormEffect from "./SandstormEffect";
 import DesertParallax from "./DesertParallax";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Hero = () => {
+    const { t } = useLanguage();
     return (
         <section id="profil" className="min-h-[90vh] relative w-full flex flex-col justify-center items-center overflow-hidden">
             {/* Layer 0: Background Glow */}
@@ -28,7 +30,7 @@ const Hero = () => {
                         transition={{ duration: 0.8 }}
                         className="font-dune text-6xl md:text-7xl lg:text-8xl text-dune-orange tracking-wider mb-8"
                     >
-                        Jordy Bacherot
+                        {t.hero.name}
                     </motion.h1>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -36,8 +38,7 @@ const Hero = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="max-w-2xl mx-auto text-lg md:text-xl text-dune-sand/80 leading-relaxed"
                     >
-                        Étudiant en sciences cognitives et intelligence artificielle.
-                        Je fusionne la compréhension de l'esprit humain avec la puissance des algorithmes.
+                        {t.hero.description}
                     </motion.h2>
                 </div>
 
@@ -48,10 +49,10 @@ const Hero = () => {
                     className="flex flex-col md:flex-row gap-6"
                 >
                     <Button asChild className="bg-dune-orange text-white hover:bg-dune-glow hover:shadow-[0_0_20px_rgba(255,85,0,0.4)] transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
-                        <a href="#projets">Voir mes projets</a>
+                        <a href="#projets">{t.hero.viewProjects}</a>
                     </Button>
-                    <Button asChild variant="outline" className="border-dune-copper text-dune-copper hover:bg-dune-copper/10 hover:text-white hover:border-dune-orange transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
-                        <a href="#contact">Me contacter</a>
+                    <Button asChild variant="outline" className="bg-dune-sand border-dune-copper text-dune-copper hover:bg-dune-copper/10 hover:text-white hover:border-dune-orange transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
+                        <a href="#contact">{t.hero.contactMe}</a>
                     </Button>
                 </motion.div>
             </div>
