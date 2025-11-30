@@ -109,7 +109,7 @@ const SandstormEffect = () => {
                 if (storm.y > canvas.height * 0.8) storm.y = -200;
             });
 
-            particles.forEach((particle, index) => {
+            particles.forEach((particle) => {
                 const storm = storms[particle.stormId];
 
                 // 1. ORBITAL MOVEMENT (The core "Group" logic)

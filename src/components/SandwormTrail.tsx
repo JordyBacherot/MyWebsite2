@@ -1,6 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-const SandwormTrail = () => {
+interface SandwormTrailProps {
+    variant?: 'desktop-horizontal' | 'mobile-vertical';
+}
+
+const SandwormTrail = ({ variant = 'desktop-horizontal' }: SandwormTrailProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -29,11 +33,20 @@ const SandwormTrail = () => {
 
         // --- STATE ---
         let time = 0;
-        let wormX = -1000; // Start closer for faster cycles
-        let wormY = canvas.height / 2;
+        const isMobile = variant === 'mobile-vertical';
+        
+        // Mobile config overrides
+        const wormSize = isMobile ? 40 : WORM_SIZE; // Smaller on mobile
+        const segmentCount = isMobile ? 60 : SEGMENT_COUNT; // Fewer segments on mobile
+        
+        // Initial positions based on variant
+        let wormX = isMobile ? canvas.width / 2 : -1000;
+        // Start from top (0) on mobile, center on desktop
+        let wormY = isMobile ? -200 : canvas.height / 2;
+        
         let thumperActive = true;
-        let thumperScale = 1; // For falling animation
-        let thumperFallY = 0; // Vertical offset for falling
+        let thumperScale = 1; 
+        let thumperFallY = 0; 
         
         // Animation State Machine
         type WormState = 'APPROACH' | 'EMERGE' | 'DEVOUR' | 'LEAVE';
@@ -48,8 +61,12 @@ const SandwormTrail = () => {
         // Worm segments (trail)
         const segments: { x: number; y: number; size: number }[] = [];
         // Initialize segments off-screen
-        for(let i=0; i<SEGMENT_COUNT; i++) {
-            segments.push({ x: -1000 - i*15, y: canvas.height/2, size: WORM_SIZE });
+        for(let i=0; i<segmentCount; i++) {
+            if (isMobile) {
+                segments.push({ x: canvas.width/2, y: -500 - i*10, size: wormSize });
+            } else {
+                segments.push({ x: -1000 - i*15, y: canvas.height/2, size: wormSize });
+            }
         }
 
         // Thumper Rings
@@ -57,7 +74,7 @@ const SandwormTrail = () => {
 
         // PRE-RENDER TEETH PATTERN (huge performance boost!)
         const teethCanvas = document.createElement('canvas');
-        const maxMouthSize = WORM_SIZE * 1.2;
+        const maxMouthSize = wormSize * 1.2;
         teethCanvas.width = maxMouthSize * 2;
         teethCanvas.height = maxMouthSize * 2;
         const teethCtx = teethCanvas.getContext('2d')!;
@@ -90,27 +107,32 @@ const SandwormTrail = () => {
         }
 
         // Frame skipping for smoother performance
-        let frameCount = 0;
+        // let frameCount = 0;
 
         const animate = () => {
             time += 0.05;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            const thumperX = canvas.width * THUMPER_X_RATIO;
-            const thumperY = canvas.height / 2;
+            const thumperX = isMobile ? canvas.width / 2 : canvas.width * THUMPER_X_RATIO;
+            // Place thumper near the bottom of the tall canvas on mobile (above Contact)
+            // User requested to move it up even more ("entre contact et la fin de projets")
+            const thumperY = isMobile ? canvas.height - 1500 : canvas.height / 2;
 
             // --- STATE LOGIC ---
             let speed = 0;
 
             switch (currentState) {
                 case 'APPROACH':
-                    speed = 3.5; // Fast approach
-                    wormOpacity = 0.1; // Shadow
+                    speed = isMobile ? 2.0 : 3.5; // Even slower on mobile
+                    wormOpacity = 0.1;
                     mouthOpen = 0;
                     headLift = 0;
                     
                     // Keep going until we reach the thumper position
-                    if (wormX >= thumperX) {
+                    // const distToThumper = isMobile ? (wormY - thumperY) : (thumperX - wormX);
+                    const hasReached = isMobile ? (wormY >= thumperY) : (wormX >= thumperX);
+
+                    if (hasReached) {
                         currentState = 'EMERGE';
                         stateTimer = 0;
                     }
@@ -157,37 +179,56 @@ const SandwormTrail = () => {
                     break;
 
                 case 'LEAVE':
-                    speed = 1.5; // Slow, steady exit (reduced from 5)
-                    wormOpacity = Math.max(0.1, wormOpacity - 0.005); // Gradual fade
-                    mouthOpen = Math.max(0, mouthOpen - 0.02); // Slow close
-                    headLift = Math.max(0, headLift - 0.5); // Gradual descent
+                    speed = isMobile ? 1.0 : 1.5; // Slower exit
+                    wormOpacity = Math.max(0.1, wormOpacity - 0.005); 
+                    mouthOpen = Math.max(0, mouthOpen - 0.02); 
+                    headLift = Math.max(0, headLift - 0.5); 
 
-                    if (wormX > canvas.width + 1000) {
-                        wormX = -1000;
+                    const isGone = isMobile ? (wormY > canvas.height + 200) : (wormX > canvas.width + 1000);
+
+                    if (isGone) {
+                        if (isMobile) {
+                            wormY = -200;
+                            wormX = canvas.width / 2;
+                        } else {
+                            wormX = -1000;
+                        }
+                        
                         currentState = 'APPROACH';
                         thumperActive = true;
                         thumperScale = 1;
                         thumperFallY = 0;
                         // Reset segments
-                        for(let i=0; i<SEGMENT_COUNT; i++) {
-                            segments[i] = { x: -1000 - i*15, y: canvas.height/2, size: WORM_SIZE };
+                        for(let i=0; i<segmentCount; i++) {
+                            if (isMobile) {
+                                segments[i] = { x: canvas.width/2, y: -200 - i*10, size: wormSize };
+                            } else {
+                                segments[i] = { x: -1000 - i*15, y: canvas.height/2, size: wormSize };
+                            }
                         }
                     }
                     break;
             }
 
             // --- UPDATE POSITION ---
-            wormX += speed;
-            
-            // Sine wave movement
-            const waveAmp = (currentState === 'EMERGE' || currentState === 'DEVOUR') ? 2 : 40;
-            const waveY = Math.sin(time * 0.5) * waveAmp + Math.sin(time * 0.2) * (waveAmp/2);
-            wormY = canvas.height / 2 + waveY - headLift;
+            if (isMobile) {
+                wormY += speed;
+                // Sine wave movement (Horizontal for vertical worm)
+                const waveAmp = (currentState === 'EMERGE' || currentState === 'DEVOUR') ? 2 : 15;
+                const waveX = Math.sin(time * 0.5) * waveAmp + Math.sin(time * 0.2) * (waveAmp/2);
+                wormX = canvas.width / 2 + waveX; // No head lift on X axis for now
+            } else {
+                wormX += speed;
+                // Sine wave movement (Vertical for horizontal worm)
+                const waveAmp = (currentState === 'EMERGE' || currentState === 'DEVOUR') ? 2 : 40;
+                const waveY = Math.sin(time * 0.5) * waveAmp + Math.sin(time * 0.2) * (waveAmp/2);
+                wormY = canvas.height / 2 + waveY - headLift;
+            }
 
             // Update Segments (only if worm is moving)
             if (speed > 0) {
-                segments.unshift({ x: wormX, y: wormY, size: WORM_SIZE });
-                if (segments.length > SEGMENT_COUNT) segments.pop();
+                segments.unshift({ x: wormX, y: wormY, size: wormSize });
+                if (segments.length > segmentCount) segments.pop();
             }
 
 
@@ -197,9 +238,17 @@ const SandwormTrail = () => {
             for (let side = -1; side <= 1; side += 2) {
                 for (let i = 0; i < segments.length; i += 3) {
                     const s = segments[i];
+                    // Wave offset direction depends on orientation
                     const waveOffset = s.size * 1.2 * side;
-                    const waveX = s.x - 20;
-                    const waveY = s.y + waveOffset;
+                    
+                    let waveX, waveY;
+                    if (isMobile) {
+                        waveX = s.x + waveOffset;
+                        waveY = s.y - 10;
+                    } else {
+                        waveX = s.x - 20;
+                        waveY = s.y + waveOffset;
+                    }
                     
                     if (i === 0) ctx.moveTo(waveX, waveY);
                     else ctx.lineTo(waveX, waveY);
@@ -213,7 +262,7 @@ const SandwormTrail = () => {
             // --- 2. DRAW WORM BODY ---
             for (let i = segments.length - 1; i >= 0; i--) {
                 const s = segments[i];
-                const indexRatio = i / SEGMENT_COUNT;
+                const indexRatio = i / segmentCount;
                 const size = s.size * (1 - indexRatio * 0.3); // Very thick body
 
                 const segOpacity = wormOpacity * (1 - indexRatio * 0.2);
@@ -237,11 +286,12 @@ const SandwormTrail = () => {
             // Draw Head (Circular Mouth)
             const headX = wormX;
             const headY = wormY;
-            const headSize = WORM_SIZE;
+            const headSize = wormSize;
             
             if (wormOpacity > 0.1) {
                 ctx.save();
                 ctx.translate(headX, headY);
+                if (isMobile) ctx.rotate(Math.PI / 2); // Rotate head 90deg for vertical movement
                 
                 // Outer Skin Ring
                 ctx.beginPath();
@@ -289,7 +339,8 @@ const SandwormTrail = () => {
             if (thumperActive) {
                 ctx.save();
                 ctx.translate(thumperX, thumperY + thumperFallY);
-                ctx.scale(thumperScale, thumperScale);
+                const baseScale = isMobile ? 0.6 : 1.0;
+                ctx.scale(thumperScale * baseScale, thumperScale * baseScale);
                 
                 // Legs
                 ctx.strokeStyle = '#2a1a10';

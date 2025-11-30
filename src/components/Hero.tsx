@@ -28,7 +28,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="font-dune text-6xl md:text-7xl lg:text-8xl text-dune-orange tracking-wider mb-8"
+                        className="font-dune text-3xl md:text-5xl lg:text-7xl font-bold text-dune-copper mb-4 tracking-tighter uppercase"
                     >
                         {t.hero.name}
                     </motion.h1>

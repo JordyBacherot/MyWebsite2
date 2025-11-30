@@ -8,14 +8,13 @@ import SandwormTrail from "./SandwormTrail";
 const Skills = () => {
     const { t } = useLanguage();
     const skillCategories = t.skills.categories;
-
     return (
         <section id="competences" className="py-24 w-full relative overflow-hidden">
             <SideDecoration side="left" variant="mountain" mode="geometry" className="left-0 top-10" />
             <SideDecoration side="right" variant="dune1" mode="geometry" className="right-0 top-40" />
             
-            {/* Sandworm Trail Background */}
-            <div className="absolute inset-0 z-0 opacity-40">
+            {/* Sandworm Trail Background (Desktop Only) */}
+            <div className="absolute inset-0 z-0 hidden lg:block">
                 <SandwormTrail />
             </div>
 
@@ -25,7 +24,7 @@ const Skills = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="font-dune text-4xl font-bold text-dune-copper tracking-[0.2em] uppercase"
+                        className="font-dune text-2xl md:text-3xl lg:text-4xl font-bold text-dune-copper tracking-[0.2em] uppercase"
                     >
                         {t.skills.title}
                     </motion.h2>

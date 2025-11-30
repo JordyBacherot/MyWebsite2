@@ -192,7 +192,7 @@ export const translations: Record<Language, TranslationStructure> = {
         // Contact Section
         contact: {
             title: "Contact",
-            subtitle: "N'hésitez pas à me contacter pour toute question. Aussi si c'est pour parler de Dune ...",
+            subtitle: "N'hésitez pas à me contacter pour toute question. Même si c'est pour parler de Dune ...",
             directMessage: "Message",
             networks: "Mes Réseaux",
             quote: "La vie est un jeu dont les règles s'apprennent en y sautant à pieds joints pour être immergé jusqu'au cou, sous peine d'être toujours pris au dépourvu...",
@@ -333,7 +333,7 @@ export const translations: Record<Language, TranslationStructure> = {
         // Contact Section
         contact: {
             title: "Contact",
-            subtitle: "Feel free to contact me for any questions. Also if it's to talk about Dune...",
+            subtitle: "Feel free to contact me for any questions. Even if it's to talk about Dune...",
             directMessage: "Message",
             networks: "My Networks",
             quote: "Life is a game whose rules you learn if you leap into it and play it to the hilt.",

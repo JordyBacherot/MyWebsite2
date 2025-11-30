@@ -49,19 +49,10 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
     };
 
     const config = duneAnimConfig[variant];
-
     // Parallax layers (Back, Mid, Front)
     const yBack = useTransform(scrollY, [0, 1], ["0%", "20%"]);
     const yMid = useTransform(scrollY, [0, 1], ["0%", "40%"]);
     const yFront = useTransform(scrollY, [0, 1], ["0%", "60%"]);
-
-    // Floating animation
-    const floatingTransition = {
-        duration: config.duration,
-        repeat: Infinity,
-        repeatType: "reverse" as const,
-        ease: "easeInOut" as any
-    };
 
     // --- PARTICLES STATE ---
     const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; duration: number; delay: number; type?: string }>>([]);

@@ -72,7 +72,7 @@ const Contact = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="font-dune text-4xl font-bold text-dune-copper tracking-[0.2em] uppercase"
+                        className="font-dune text-2xl md:text-3xl lg:text-4xl font-bold text-dune-copper tracking-[0.2em] uppercase"
                     >
                         {t.contact.title}
                     </motion.h2>

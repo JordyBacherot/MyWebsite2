@@ -50,12 +50,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="text-xl font-bold tracking-[0.3em] text-dune-copper uppercase font-dune"
+                        className="text-lg md:text-xl font-bold tracking-[0.3em] text-dune-copper uppercase font-dune"
                     >
                         Portfolio
                     </motion.div>
-                    <div className="flex items-center gap-8">
-                        <nav className="hidden md:flex items-center space-x-8 text-sm tracking-widest uppercase">
+                    <div className="flex items-center gap-4 md:gap-8">
+                        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8 text-xs xl:text-sm tracking-widest uppercase">
                             {Object.entries(t.nav).map(([key, label], index) => {
                                 const targetId = key === 'profile' ? 'profil' : key === 'journey' ? 'parcours' : key === 'skills' ? 'competences' : key;
                                 return (
@@ -76,12 +76,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                     </motion.a>
                                 );
                             })}
-                            <LanguageToggle />
                         </nav>
-                        <DuneThemeToggle 
-                            isDarkMode={isDarkMode}
-                            onToggle={() => setIsDarkMode(!isDarkMode)}
-                        />
+                        <div className="flex items-center gap-2">
+                            <LanguageToggle />
+                            <DuneThemeToggle 
+                                isDarkMode={isDarkMode}
+                                onToggle={() => setIsDarkMode(!isDarkMode)}
+                            />
+                        </div>
                     </div>
                 </div>
             </header>
