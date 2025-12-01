@@ -19,9 +19,13 @@ const Contact = () => {
         email: '',
         message: ''
     });
+    const [cooldown, setCooldown] = useState(0);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Check if cooldown is active
+        if (cooldown > 0) return;
 
         // Construct mailto link
         const mailtoLink = `mailto:jordybacherot.link@outlook.fr?subject=Contact de ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(
@@ -30,7 +34,20 @@ const Contact = () => {
 
         // Open email client
         window.location.href = mailtoLink;
+
+        // Start cooldown
+        setCooldown(30);
     };
+
+    // Cooldown timer
+    useEffect(() => {
+        if (cooldown > 0) {
+            const timer = setTimeout(() => {
+                setCooldown(cooldown - 1);
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [cooldown]);
 
     // Parallax 3D effect
     const mouseX = useMotionValue(0);
@@ -129,6 +146,8 @@ const Contact = () => {
                                     <motion.a
                                         key={idx}
                                         href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         whileHover={{ scale: 1.15, rotate: 10 }}
                                         whileTap={{ scale: 0.95 }}
                                         className="p-3 rounded-full bg-dune-copper/20 text-dune-copper hover:bg-dune-orange hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(210,144,38,0.5)]"
@@ -236,28 +255,34 @@ const Contact = () => {
 
                                     {/* Stylized submit button */}
                                     <motion.div
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
+                                        whileHover={cooldown === 0 ? { scale: 1.02 } : {}}
+                                        whileTap={cooldown === 0 ? { scale: 0.98 } : {}}
                                     >
                                         <Button
                                             type="submit"
-                                            className="w-full bg-gradient-to-r from-dune-copper via-dune-orange to-dune-copper bg-size-200 bg-pos-0 hover:bg-pos-100 text-white font-bold tracking-[0.3em] uppercase rounded-xl h-14 text-sm relative overflow-hidden group transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(210,144,38,0.6)]"
+                                            disabled={cooldown > 0}
+                                            className={`w-full font-bold tracking-[0.3em] uppercase rounded-xl h-14 text-sm relative overflow-hidden group transition-all duration-500 shadow-lg ${cooldown > 0
+                                                    ? 'bg-dune-copper/30 text-dune-sand/50 cursor-not-allowed'
+                                                    : 'bg-gradient-to-r from-dune-copper via-dune-orange to-dune-copper bg-size-200 bg-pos-0 hover:bg-pos-100 text-white hover:shadow-[0_0_30px_rgba(210,144,38,0.6)]'
+                                                }`}
                                         >
                                             {/* Animated background */}
-                                            <motion.div
-                                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                                                animate={{
-                                                    x: ["-100%", "100%"],
-                                                }}
-                                                transition={{
-                                                    duration: 2,
-                                                    repeat: Infinity,
-                                                    ease: "linear",
-                                                }}
-                                            />
+                                            {cooldown === 0 && (
+                                                <motion.div
+                                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                                                    animate={{
+                                                        x: ["-100%", "100%"],
+                                                    }}
+                                                    transition={{
+                                                        duration: 2,
+                                                        repeat: Infinity,
+                                                        ease: "linear",
+                                                    }}
+                                                />
+                                            )}
                                             <span className="relative z-10 flex items-center justify-center gap-3">
                                                 <Send size={18} />
-                                                {t.contact.submit}
+                                                {cooldown > 0 ? `Cooldown: ${cooldown}s` : t.contact.submit}
                                             </span>
                                         </Button>
                                     </motion.div>
