@@ -123,7 +123,7 @@ export const translations: Record<Language, TranslationStructure> = {
         },
         // Skills Section
         skills: {
-            title: "Compétences & Expertises",
+            title: "Competences",
             categories: [
                 {
                     name: "Data Science & IA",
@@ -131,7 +131,7 @@ export const translations: Record<Language, TranslationStructure> = {
                 },
                 {
                     name: "Intégration & Génération IA",
-                    skills: ["LLMs", "RAG", "LangChain","LangGraph","LangFuse", "Ollama", "HuggingFace"]
+                    skills: ["LLMs", "RAG", "LangChain", "LangGraph", "LangFuse", "Ollama", "HuggingFace"]
                 },
                 {
                     name: "Développement Web & Logiciel",
@@ -165,13 +165,13 @@ export const translations: Record<Language, TranslationStructure> = {
                     theme: "Développement Web - Familial",
                     description: "Logiciel de gestion de commandes interne entre deux boucheries du même propriétaire. Site non utilisé.",
                     tags: ["Projet Personnel", "React", "TypeScript", "Tailwind", "Bun", "Supabase"]
-                }, 
+                },
                 {
                     title: "Algorithme de recommandation de jeux steams",
                     theme: "Embedding + ANN - Académique",
                     description: "Algorithme de recommandation de jeux steams basé sur un ANN (approximate nearest neighbors) et sur les embeddings des utilisateurs.",
                     tags: ["Projet Académique", "Python", "Pytorch", "Embedding", "ANN"]
-                }, 
+                },
                 {
                     title: "Logiciel de gestion de commandes de restaurant",
                     theme: "Développement Web - Familial",
@@ -184,7 +184,7 @@ export const translations: Record<Language, TranslationStructure> = {
                     description: "Création d'un chatbot d'entrainement aux examens de médecine ECOS. Chatbot jouant le rôle d'un patient et répondant aux questions de l'étudiant/médecin. Evaluation automatique de la discussion. Projet Abandonné",
                     tags: ["Projet Professionnel", "LLM", "LangChain", "LangFuse", "VLLM"]
                 },
-                
+
             ],
         },
         // Contact Section
@@ -226,7 +226,7 @@ export const translations: Record<Language, TranslationStructure> = {
         // Hero Section
         hero: {
             name: "Jordy Bacherot",
-            description: "Student in Cognitive Sciences and Artificial Intelligence and Apprenticeship in Artificial Intelligence Engineering.", 
+            description: "Student in Cognitive Sciences and Artificial Intelligence and Apprenticeship in Artificial Intelligence Engineering.",
             viewProjects: "View my projects",
             contactMe: "Contact me",
         },
@@ -305,13 +305,13 @@ export const translations: Record<Language, TranslationStructure> = {
                     theme: "Web Development - Family",
                     description: "Internal order management software between two butcher shops owned by the same person. Site not used.",
                     tags: ["Personal Project", "React", "TypeScript", "Tailwind", "Bun", "Supabase"]
-                }, 
+                },
                 {
                     title: "Steam Game Recommendation Algorithm",
                     theme: "Embedding + ANN - Academic",
                     description: "Steam game recommendation algorithm based on an ANN (approximate nearest neighbors) and user embeddings.",
                     tags: ["Academic Project", "Python", "Pytorch", "Embedding", "ANN"]
-                }, 
+                },
                 {
                     title: "Restaurant Order Management Software",
                     theme: "Web Development - Family",
@@ -324,7 +324,7 @@ export const translations: Record<Language, TranslationStructure> = {
                     description: "Creation of a training chatbot for ECOS medical exams. Chatbot playing the role of a patient and answering the student/doctor's questions. Automatic evaluation of the discussion. Project Abandoned",
                     tags: ["Professional Project", "LLM", "LangChain", "LangFuse", "VLLM"]
                 },
-                
+
             ],
         },
         // Contact Section

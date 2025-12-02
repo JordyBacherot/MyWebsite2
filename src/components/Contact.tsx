@@ -13,6 +13,42 @@ const Contact = () => {
     const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
     const containerRef = useRef<HTMLDivElement>(null);
 
+    // Form states
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+    const [cooldown, setCooldown] = useState(0);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        // Check if cooldown is active
+        if (cooldown > 0) return;
+
+        // Construct mailto link
+        const mailtoLink = `mailto:jordybacherot.link@outlook.fr?subject=Contact de ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(
+            `Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+        )}`;
+
+        // Open email client
+        window.location.href = mailtoLink;
+
+        // Start cooldown
+        setCooldown(30);
+    };
+
+    // Cooldown timer
+    useEffect(() => {
+        if (cooldown > 0) {
+            const timer = setTimeout(() => {
+                setCooldown(cooldown - 1);
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [cooldown]);
+
     // Parallax 3D effect
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -104,12 +140,14 @@ const Contact = () => {
                             <h3 className="font-bold text-dune-copper mb-4 tracking-wider">{t.contact.networks}</h3>
                             <div className="flex gap-3">
                                 {[
-                                    { Icon: Linkedin, label: "LinkedIn" },
-                                    { Icon: Github, label: "GitHub" },
-                                ].map(({ Icon, label }, idx) => (
+                                    { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/jordy-bacherot/" },
+                                    { Icon: Github, label: "GitHub", href: "https://github.com/JordyBacherot" },
+                                ].map(({ Icon, label, href }, idx) => (
                                     <motion.a
                                         key={idx}
-                                        href="#"
+                                        href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         whileHover={{ scale: 1.15, rotate: 10 }}
                                         whileTap={{ scale: 0.95 }}
                                         className="p-3 rounded-full bg-dune-copper/20 text-dune-copper hover:bg-dune-orange hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(210,144,38,0.5)]"
@@ -162,7 +200,7 @@ const Contact = () => {
                         >
                             <form
                                 className="relative bg-gradient-to-br from-dune-base/40 to-dune-copper/5 p-8 md:p-10 rounded-3xl border-2 border-dune-copper/30 backdrop-blur-md shadow-2xl"
-                                onSubmit={(e) => e.preventDefault()}
+                                onSubmit={handleSubmit}
                             >
                                 {/* Spice glow effect */}
                                 <motion.div
@@ -182,6 +220,8 @@ const Contact = () => {
                                         </label>
                                         <Input
                                             placeholder={t.contact.placeholders.name}
+                                            value={formData.name}
+                                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                             className="bg-dune-base/70 border-dune-copper/30 focus:border-dune-orange focus:ring-2 focus:ring-dune-orange/50 text-dune-sand placeholder:text-dune-sand/40 rounded-xl h-14 transition-all duration-300 hover:border-dune-orange/50"
                                         />
                                     </div>
@@ -194,6 +234,8 @@ const Contact = () => {
                                         <Input
                                             type="email"
                                             placeholder={t.contact.placeholders.email}
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                             className="bg-dune-base/70 border-dune-copper/30 focus:border-dune-orange focus:ring-2 focus:ring-dune-orange/50 text-dune-sand placeholder:text-dune-sand/40 rounded-xl h-14 transition-all duration-300 hover:border-dune-orange/50"
                                         />
                                     </div>
@@ -205,34 +247,42 @@ const Contact = () => {
                                         </label>
                                         <Textarea
                                             placeholder={t.contact.placeholders.message}
+                                            value={formData.message}
+                                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                             className="bg-dune-base/70 border-dune-copper/30 focus:border-dune-orange focus:ring-2 focus:ring-dune-orange/50 text-dune-sand placeholder:text-dune-sand/40 rounded-xl min-h-[160px] transition-all duration-300 hover:border-dune-orange/50 resize-none"
                                         />
                                     </div>
 
                                     {/* Stylized submit button */}
                                     <motion.div
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
+                                        whileHover={cooldown === 0 ? { scale: 1.02 } : {}}
+                                        whileTap={cooldown === 0 ? { scale: 0.98 } : {}}
                                     >
                                         <Button
                                             type="submit"
-                                            className="w-full bg-gradient-to-r from-dune-copper via-dune-orange to-dune-copper bg-size-200 bg-pos-0 hover:bg-pos-100 text-white font-bold tracking-[0.3em] uppercase rounded-xl h-14 text-sm relative overflow-hidden group transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(210,144,38,0.6)]"
+                                            disabled={cooldown > 0}
+                                            className={`w-full font-bold tracking-[0.3em] uppercase rounded-xl h-14 text-sm relative overflow-hidden group transition-all duration-500 shadow-lg ${cooldown > 0
+                                                    ? 'bg-dune-copper/30 text-dune-sand/50 cursor-not-allowed'
+                                                    : 'bg-gradient-to-r from-dune-copper via-dune-orange to-dune-copper bg-size-200 bg-pos-0 hover:bg-pos-100 text-white hover:shadow-[0_0_30px_rgba(210,144,38,0.6)]'
+                                                }`}
                                         >
                                             {/* Animated background */}
-                                            <motion.div
-                                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                                                animate={{
-                                                    x: ["-100%", "100%"],
-                                                }}
-                                                transition={{
-                                                    duration: 2,
-                                                    repeat: Infinity,
-                                                    ease: "linear",
-                                                }}
-                                            />
+                                            {cooldown === 0 && (
+                                                <motion.div
+                                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                                                    animate={{
+                                                        x: ["-100%", "100%"],
+                                                    }}
+                                                    transition={{
+                                                        duration: 2,
+                                                        repeat: Infinity,
+                                                        ease: "linear",
+                                                    }}
+                                                />
+                                            )}
                                             <span className="relative z-10 flex items-center justify-center gap-3">
                                                 <Send size={18} />
-                                                {t.contact.submit}
+                                                {cooldown > 0 ? `Cooldown: ${cooldown}s` : t.contact.submit}
                                             </span>
                                         </Button>
                                     </motion.div>
