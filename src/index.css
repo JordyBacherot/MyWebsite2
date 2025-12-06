@@ -8,6 +8,7 @@
     url('./assets/fonts/Dune_Rise.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @layer base {
@@ -109,15 +110,15 @@
   .font-dune {
     font-family: 'Dune Rise', sans-serif;
   }
-  
+
   .bg-size-200 {
     background-size: 200% 100%;
   }
-  
+
   .bg-pos-0 {
     background-position: 0% 0%;
   }
-  
+
   .bg-pos-100 {
     background-position: 100% 0%;
   }

@@ -1,54 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon_mini.png" />
-    <link rel="apple-touch-icon" href="/favicon_mini.png" />
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jordy Bacherot</title>
-    <meta
-      name="description"
-      content="Portfolio de Jordy Bacherot, Alternant Ingénieur en Intelligence Artificielle. Découvrez mes projets en IA, LLM et développement web."
-    />
-    <meta
-      name="keywords"
-      content="Jordy Bacherot, Intelligence Artificielle, IA, Formation IA, Sciences Cognitives, Ingénieur IA, Développeur, LLM, RAG, Machine Learning, Deep Learning, Portfolio"
-    />
-    <meta name="author" content="Jordy Bacherot" />
-    <meta
-      name="google-site-verification"
-      content="onI4Tulz2A9lrU-9MQ-3-63c-whPMvzvVM9jeTUWZd8"
-    />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jordybacherot.com/" />
-    <meta
-      property="og:title"
-      content="Jordy Bacherot - Alternant Ingénieur IA"
-    />
-    <meta
-      property="og:description"
-      content="Découvrez le portfolio de Jordy Bacherot : IA et Sciences Cognitives"
-    />
-    <meta property="og:image" content="/og-image.jpg" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/favicon_mini.png" />
+  <link rel="apple-touch-icon" href="/favicon_mini.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jordy Bacherot</title>
+  <meta name="description"
+    content="Portfolio de Jordy Bacherot, Alternant Ingénieur en Intelligence Artificielle. Découvrez mes projets en IA, LLM et développement web." />
+  <meta name="keywords"
+    content="Jordy Bacherot, Intelligence Artificielle, IA, Formation IA, Sciences Cognitives, Ingénieur IA, Développeur, LLM, RAG, Machine Learning, Deep Learning, Portfolio" />
+  <meta name="author" content="Jordy Bacherot" />
+  <meta name="google-site-verification" content="onI4Tulz2A9lrU-9MQ-3-63c-whPMvzvVM9jeTUWZd8" />
+  <link rel="preload" href="/src/assets/fonts/Dune_Rise.ttf" as="font" type="font/ttf" crossorigin>
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://jordybacherot.com/" />
-    <meta
-      property="twitter:title"
-      content="Jordy Bacherot - Alternant Ingénieur IA"
-    />
-    <meta
-      property="twitter:description"
-      content="Découvrez le portfolio de Jordy Bacherot : IA et Sciences Cognitives"
-    />
-    <meta property="twitter:image" content="/og-image.jpg" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jordybacherot.com/" />
+  <meta property="og:title" content="Jordy Bacherot - Alternant Ingénieur IA" />
+  <meta property="og:description" content="Découvrez le portfolio de Jordy Bacherot : IA et Sciences Cognitives" />
+  <meta property="og:image" content="/og-image.jpg" />
 
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://jordybacherot.com/" />
+  <meta property="twitter:title" content="Jordy Bacherot - Alternant Ingénieur IA" />
+  <meta property="twitter:description" content="Découvrez le portfolio de Jordy Bacherot : IA et Sciences Cognitives" />
+  <meta property="twitter:image" content="/og-image.jpg" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
@@ -74,19 +57,21 @@
         "description": "Alternant Ingénieur spécialisé en Intelligence Artificielle et Sciences Cognitives, spécialisé en IA génératives (LLM, RAG)."
       }
     </script>
-    <script>
-      // Apply dark mode immediately to prevent flash
-      // Check localStorage for user preference, default to dark mode
-      const isDarkMode = localStorage.getItem("theme") !== "light";
-      if (isDarkMode) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <script>
+    // Apply dark mode immediately to prevent flash
+    // Check localStorage for user preference, default to dark mode
+    const isDarkMode = localStorage.getItem("theme") !== "light";
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

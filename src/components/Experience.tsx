@@ -9,9 +9,14 @@ const Experience = () => {
 
     return (
         <section id="parcours" className="py-24 w-full relative overflow-hidden">
-            <SideDecoration side="left" variant="dune1" mode="dune" showParticles={false} className="left-0 top-20" />
-            <SideDecoration side="right" variant="dune2" mode="dune" showParticles={false} className="right-0 top-40" />
-            
+            {/* Side Decorations - Desktop Only */}
+            {typeof window !== 'undefined' && window.innerWidth >= 1024 && (
+                <>
+                    <SideDecoration side="left" variant="dune1" mode="dune" showParticles={false} className="left-0 top-20" />
+                    <SideDecoration side="right" variant="dune2" mode="dune" showParticles={false} className="right-0 top-40" />
+                </>
+            )}
+
             <div className="container mx-auto px-6 max-w-5xl relative z-10">
                 <div className="flex flex-col items-center mb-16 space-y-4">
                     <motion.h2
@@ -34,6 +39,7 @@ const Experience = () => {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 }}
                             className="relative pl-8 md:pl-12"
+                            style={{ willChange: "opacity, transform" }}
                         >
                             {/* Timeline Dot */}
                             <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-dune-base border-2 border-dune-orange shadow-[0_0_10px_rgba(255,85,0,0.5)]"></div>

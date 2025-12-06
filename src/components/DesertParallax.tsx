@@ -24,7 +24,7 @@ const DesertParallax = () => {
 
             {/* Layer 1: Back Dunes (Darkest, Slowest) */}
             <motion.div
-                style={{ y: yBack }}
+                style={{ y: yBack, willChange: "transform" }}
                 className="absolute bottom-0 left-0 w-full h-[60%] md:h-[90%] z-10"
             >
                 <svg viewBox="0 0 1440 320" className="w-full h-full preserve-3d" preserveAspectRatio="xMidYMax slice">
@@ -38,7 +38,7 @@ const DesertParallax = () => {
 
             {/* Layer 1.5: Realistic Mountain (Left side feature) */}
             <motion.div
-                style={{ y: yMid }}
+                style={{ y: yMid, willChange: "transform" }}
                 className="absolute bottom-0 left-0 w-[85%] md:w-[40%] h-[40%] md:h-[80%] z-[15]"
             >
                 <svg viewBox="0 0 500 500" className="w-full h-full" preserveAspectRatio="xMidYMax slice">
@@ -64,7 +64,7 @@ const DesertParallax = () => {
 
             {/* Layer 2: Middle Dunes (Medium, Medium Speed) */}
             <motion.div
-                style={{ y: yMid }}
+                style={{ y: yMid, willChange: "transform" }}
                 className="absolute bottom-0 left-0 w-full h-[50%] md:h-[75%] z-20"
             >
                 <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="xMidYMax slice">
@@ -78,7 +78,7 @@ const DesertParallax = () => {
 
             {/* Layer 3: Front Dunes (Lightest, Fastest) */}
             <motion.div
-                style={{ y: yFront }}
+                style={{ y: yFront, willChange: "transform" }}
                 className="absolute bottom-0 left-0 w-full h-[35%] md:h-[55%] z-30"
             >
                 <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="xMidYMax slice">

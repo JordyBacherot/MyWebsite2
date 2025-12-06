@@ -30,6 +30,7 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
                         style={{
                             width: '200%',
                             height: '200%',
+                            willChange: "transform"
                         }}
                     >
                         <motion.div
@@ -57,7 +58,7 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
                                     left: '50%'
                                 }}
                             />
-                            
+
                             {/* Sun Body - Simple sphere */}
                             <div
                                 className="relative w-4 h-4 rounded-full shadow-lg"
@@ -88,6 +89,7 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
                         repeat: Infinity,
                         ease: "linear"
                     }}
+                    style={{ willChange: "transform" }}
                 >
                     {/* Planet Glow */}
                     <motion.div
@@ -102,12 +104,12 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
                             ease: "easeInOut"
                         }}
                         style={{
-                            background: isDarkMode 
+                            background: isDarkMode
                                 ? 'radial-gradient(circle, rgba(184, 115, 51, 0.6) 0%, transparent 70%)'
                                 : 'radial-gradient(circle, rgba(255, 183, 77, 0.8) 0%, transparent 70%)'
                         }}
                     />
-                    
+
                     {/* Planet Body */}
                     <div className="relative w-7 h-7 rounded-full overflow-hidden shadow-2xl">
                         {/* Base gradient */}
@@ -119,7 +121,7 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
                                     : 'radial-gradient(circle at 30% 30%, #f4d9a8 0%, #d4a574 40%, #b87333 100%)'
                             }}
                         />
-                        
+
                         {/* Texture overlay - sand dunes effect */}
                         <motion.div
                             className="absolute inset-0 opacity-40"
@@ -142,12 +144,12 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
                                 `
                             }}
                         />
-                        
+
                         {/* Crater spots */}
                         <div className="absolute top-1 left-1 w-1 h-1 rounded-full bg-black/20" />
                         <div className="absolute top-3 right-1 w-1.5 h-1.5 rounded-full bg-black/15" />
                         <div className="absolute bottom-1 left-2 w-1 h-1 rounded-full bg-black/25" />
-                        
+
                         {/* Highlight shine */}
                         <div
                             className="absolute top-0 left-0 w-full h-full"
@@ -155,7 +157,7 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
                                 background: 'radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.4) 0%, transparent 50%)'
                             }}
                         />
-                        
+
                         {/* Shadow side */}
                         <div
                             className="absolute top-0 right-0 w-full h-full"
@@ -181,6 +183,7 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
                         style={{
                             width: '200%',
                             height: '200%',
+                            willChange: "transform"
                         }}
                     >
                         <motion.div
@@ -208,7 +211,7 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
                                     left: '50%'
                                 }}
                             />
-                            
+
                             {/* Sun Body - Simple sphere */}
                             <div
                                 className="relative w-4 h-4 rounded-full shadow-xl"

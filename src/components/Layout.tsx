@@ -36,13 +36,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 className="fixed inset-0 pointer-events-none z-0 opacity-20"
                 style={{
                     y: backgroundY,
-                    background: 'radial-gradient(circle at 50% 50%, rgba(184, 115, 51, 0.15) 0%, rgba(15, 10, 10, 0) 70%)'
+                    background: 'radial-gradient(circle at 50% 50%, rgba(184, 115, 51, 0.15) 0%, rgba(15, 10, 10, 0) 70%)',
+                    willChange: "transform"
                 }}
             />
 
-            {/* Grain Effect */}
+            {/* Grain Effect - Static layer, no transforms needed */}
             <div className="fixed inset-0 pointer-events-none opacity-[0.04] mix-blend-overlay z-50"
-                style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
+                style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                    transform: 'translateZ(0)' // Force GPU layer
+                }}>
             </div>
 
             <header className="fixed top-0 left-0 right-0 z-40 bg-dune-base/80 backdrop-blur-md border-b border-dune-copper/10 transition-colors duration-500">
@@ -79,7 +83,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         </nav>
                         <div className="flex items-center gap-2">
                             <LanguageToggle />
-                            <DuneThemeToggle 
+                            <DuneThemeToggle
                                 isDarkMode={isDarkMode}
                                 onToggle={() => setIsDarkMode(!isDarkMode)}
                             />
@@ -95,7 +99,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <footer className="border-t border-dune-copper/10 py-8 text-center text-dune-sand/50 text-xs tracking-widest uppercase relative z-10">
                 <p>&copy; {new Date().getFullYear()} - {t.footer.copyright}</p>
             </footer>
-        </div>
+        </div >
     );
 };
 
