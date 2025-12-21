@@ -6,7 +6,10 @@ import path from "path"
 export default defineConfig({
   plugins: [
     react(),
-    Sitemap({ hostname: 'https://jordy-bacherot.vercel.app' }),
+    Sitemap({
+      hostname: 'https://jordy-bacherot.vercel.app',
+      generateRobotsTxt: false
+    }),
   ],
   resolve: {
     alias: {
