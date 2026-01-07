@@ -1,73 +1,58 @@
-# React + TypeScript + Vite
+# Dune-Inspired Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## À propos du projet
 
-Currently, two official plugins are available:
+Ce portfolio personnel est né de ma passion pour l'univers de **Dune**. Il constitue un terrain d'exploration pour des idées visuelles.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> **Note** :
+> L'objectif principal de ce site est l'originalité visuelle. L'optimisation pure n'est pas la priorité absolue face à l'expérience utilisateur et l'ambiance "Arrakis".
 
-## React Compiler
+## Fonctionnalités Clés & Ambiance
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Le site intègre de nombreux éléments thématiques pour recréer l'atmosphère désertique de Dune :
 
-## Expanding the ESLint configuration
+- **Parallax du Désert** : Un arrière-plan dynamique qui donne de la profondeur (`DesertParallax`).
+- **Tempêtes de Sable** : Effets de particules immersifs (`SandstormEffect`).
+- **Le Ver des Sables (Shai-Hulud)** : Animations uniques représentant le mouvement du ver (`SandwormTrail`), adaptées pour desktop et mobile.
+- **Mode Sombre/Clair Thématique** : Une bascule de thème personnalisée qui s'intègre à l'univers (`DuneThemeToggle`).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technologies Utilisées
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Ce projet est construit avec un stack moderne :
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **React** (via Vite) - _Framework UI_
+- **TypeScript** - _Sécurité du typage_
+- **Tailwind CSS** - _Styling utilitaire_
+- **Framer Motion** - _Animations fluides et complexes_
+- **Bun** - _Runtime & Package Manager ultra-rapide_
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Installation & Démarrage
+
+Ce projet utilise **Bun**. Assurez-vous qu'il est installé sur votre machine.
+
+### 1. Installation des dépendances
+
+```bash
+bun install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Lancer le serveur de développement
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+bun run dev
 ```
+
+### 3. Construction pour la production
+
+```bash
+bun run build
+```
+
+## Pair Programming
+
+Ce développement a été réalisé en **pair programming avec Antigravity** (modèle : Gemini 3 pro).
+
+## Mes réseaux
+
+**Jordy Bacherot**
+[LinkedIn](https://www.linkedin.com/in/jordy-bacherot)
