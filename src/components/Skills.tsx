@@ -10,12 +10,18 @@ const Skills = () => {
     const skillCategories = t.skills.categories;
     return (
         <section id="competences" className="py-24 w-full relative overflow-hidden">
-            <SideDecoration side="left" variant="mountain" mode="geometry" className="left-0 top-10" />
-            <SideDecoration side="right" variant="dune1" mode="geometry" className="right-0 top-40" />
-            
+            {/* Side Decorations - Desktop Only */}
+            {typeof window !== 'undefined' && window.innerWidth >= 1024 && (
+                <>
+                    <SideDecoration side="left" variant="mountain" mode="geometry" className="left-0 top-10" />
+                    <SideDecoration side="right" variant="dune1" mode="geometry" className="right-0 top-40" />
+                </>
+            )}
+
             {/* Sandworm Trail Background (Desktop Only) */}
             <div className="absolute inset-0 z-0 hidden lg:block">
-                <SandwormTrail />
+                {/* Conditionally render to prevent background execution on mobile */}
+                {typeof window !== 'undefined' && window.innerWidth >= 1024 && <SandwormTrail />}
             </div>
 
             <div className="container mx-auto px-6 max-w-6xl relative z-10">
@@ -40,17 +46,17 @@ const Skills = () => {
                             viewport={{ once: true, margin: "-50px" }}
                             variants={{
                                 hidden: { opacity: 0, y: 30 },
-                                visible: { 
-                                    opacity: 1, 
+                                visible: {
+                                    opacity: 1,
                                     y: 0,
-                                    transition: { 
-                                        duration: 0.5, 
+                                    transition: {
+                                        duration: 0.5,
                                         delay: index * 0.1,
-                                        ease: "easeOut" 
+                                        ease: "easeOut"
                                     }
                                 }
                             }}
-                            whileHover={{ 
+                            whileHover={{
                                 scale: 1.05,
                                 zIndex: 10,
                                 transition: { duration: 0.3 }

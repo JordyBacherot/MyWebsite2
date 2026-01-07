@@ -3,9 +3,20 @@ import { motion } from "framer-motion";
 import SandstormEffect from "./SandstormEffect";
 import DesertParallax from "./DesertParallax";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useState, useEffect } from "react";
 
 const Hero = () => {
     const { t } = useLanguage();
+    const [showEffects, setShowEffects] = useState(false);
+
+    useEffect(() => {
+        // Defer heavy effects to allow LCP (text) to paint first
+        const timer = setTimeout(() => {
+            setShowEffects(true);
+        }, 100);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <section id="profil" className="min-h-[90vh] relative w-full flex flex-col justify-center items-center overflow-hidden">
             {/* Layer 0: Background Glow */}
@@ -13,12 +24,12 @@ const Hero = () => {
 
             {/* Layer 1: Desert Parallax */}
             <div className="absolute inset-0 z-0">
-                <DesertParallax />
+                {showEffects && <DesertParallax />}
             </div>
 
             {/* Layer 2: Sandstorm Effect (Atmosphere overlay) */}
             <div className="absolute inset-0 z-10 pointer-events-none">
-                <SandstormEffect />
+                {showEffects && <SandstormEffect />}
             </div>
 
             {/* Layer 3: Content Container */}
@@ -27,7 +38,7 @@ const Hero = () => {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
                         className="font-dune text-3xl md:text-5xl lg:text-7xl font-bold text-dune-copper mb-4 tracking-tighter uppercase"
                     >
                         {t.hero.name}

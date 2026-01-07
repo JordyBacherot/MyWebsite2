@@ -28,7 +28,7 @@ const SandstormEffect = () => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { alpha: true }); // Optimized context
         if (!ctx) return;
 
         // Set canvas size
@@ -42,7 +42,31 @@ const SandstormEffect = () => {
             }
         };
         setCanvasSize();
-        window.addEventListener('resize', setCanvasSize);
+
+        let resizeTimeout: ReturnType<typeof setTimeout>;
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(setCanvasSize, 200);
+        };
+        window.addEventListener('resize', handleResize);
+
+        // --- PRE-RENDER PARTICLE SPRITE ---
+        // Creating a glowing dot once and reusing it is much faster than shadowBlur
+        const spriteSize = 32;
+        const halfSprite = spriteSize / 2;
+        const particleCanvas = document.createElement('canvas');
+        particleCanvas.width = spriteSize;
+        particleCanvas.height = spriteSize;
+        const pCtx = particleCanvas.getContext('2d')!;
+
+        // Draw glowing dot
+        const gradient = pCtx.createRadialGradient(halfSprite, halfSprite, 0, halfSprite, halfSprite, halfSprite);
+        gradient.addColorStop(0, 'rgba(255, 140, 40, 1)'); // Core
+        gradient.addColorStop(0.4, 'rgba(255, 100, 20, 0.5)'); // Glow
+        gradient.addColorStop(1, 'rgba(255, 100, 20, 0)'); // Fade
+
+        pCtx.fillStyle = gradient;
+        pCtx.fillRect(0, 0, spriteSize, spriteSize);
 
         // Create 3-4 localized mini-storms
         const stormCount = Math.floor(Math.random() * 2) + 3;
@@ -52,21 +76,20 @@ const SandstormEffect = () => {
             storms.push({
                 x: (canvas.width / stormCount) * i + Math.random() * (canvas.width / stormCount),
                 y: Math.random() * (canvas.height * 0.7),
-                radius: 150 + Math.random() * 100, // Slightly larger radius for looser groups
+                radius: 150 + Math.random() * 100,
                 strength: 0.2 + Math.random() * 0.3,
-                // VERY SLOW storm movement
                 speedX: (Math.random() - 0.5) * 0.1,
                 speedY: (Math.random() - 0.5) * 0.05
             });
         }
 
-        // Create particles (REDUCED for performance)
-        const particlesPerStorm = 25; // Reduced from 40
+        // Create particles
+        const isMobile = window.innerWidth < 768;
+        const particlesPerStorm = isMobile ? 6 : 25; // Drastically reduced on mobile (was 0)
         const particles: Particle[] = [];
 
         storms.forEach((storm, stormId) => {
             for (let i = 0; i < particlesPerStorm; i++) {
-                // Initialize in a cloud around the storm center
                 const angle = Math.random() * Math.PI * 2;
                 const distance = Math.random() * storm.radius;
 
@@ -75,9 +98,9 @@ const SandstormEffect = () => {
                     y: storm.y + Math.sin(angle) * distance,
                     size: Math.random() * 2.5 + 0.5,
                     opacity: Math.random() * 0.6 + 0.3,
-                    angle: angle, // Current orbital angle
-                    radius: distance, // Current orbital radius
-                    speed: (Math.random() * 0.002 + 0.001) * (Math.random() < 0.5 ? 1 : -1), // Very slow orbital speed, random direction
+                    angle: angle,
+                    radius: distance,
+                    speed: (Math.random() * 0.002 + 0.001) * (Math.random() < 0.5 ? 1 : -1),
                     stormId,
                     turbulenceOffset: Math.random() * 100
                 });
@@ -89,73 +112,62 @@ const SandstormEffect = () => {
         let time = 0;
 
         const animate = () => {
-            // ULTRA SLOW time increment
             time += 0.005;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Separation parameters (REMOVED for performance)
-            // Skip collision detection - too expensive with multiple instances
-
             // Update storms
-            storms.forEach((storm) => {
-                // Storms drift very slowly
+            for (let i = 0; i < storms.length; i++) {
+                const storm = storms[i];
                 storm.x += Math.sin(time * 0.1) * 0.05 + storm.speedX;
                 storm.y += Math.cos(time * 0.08) * 0.05 + storm.speedY;
 
-                // Wrap storms
                 if (storm.x < -200) storm.x = canvas.width + 200;
                 if (storm.x > canvas.width + 200) storm.x = -200;
                 if (storm.y < -200) storm.y = canvas.height + 200;
                 if (storm.y > canvas.height * 0.8) storm.y = -200;
-            });
+            }
 
-            particles.forEach((particle) => {
+            // Batch drawing - no state changes inside loop
+            // We use the pre-rendered sprite
+
+            for (let i = 0; i < particles.length; i++) {
+                const particle = particles[i];
                 const storm = storms[particle.stormId];
 
-                // 1. ORBITAL MOVEMENT (The core "Group" logic)
-                // Instead of following velocity vectors, particles orbit their storm center
-                // This guarantees they stay in a group but never form lines
-
-                // Update angle based on orbital speed
+                // 1. ORBITAL MOVEMENT
                 particle.angle += particle.speed;
 
-                // Add some breathing to the radius (in and out movement)
                 const breathing = Math.sin(time * 0.5 + particle.turbulenceOffset) * 20;
                 const currentRadius = particle.radius + breathing;
 
-                // Calculate target position based on orbit
                 const targetX = storm.x + Math.cos(particle.angle) * currentRadius;
                 const targetY = storm.y + Math.sin(particle.angle) * currentRadius;
 
-                // 2. TURBULENCE (Organic noise)
+                // 2. TURBULENCE
                 const turbulenceX = Math.sin(time * 0.5 + particle.turbulenceOffset) * 10;
                 const turbulenceY = Math.cos(time * 0.3 + particle.turbulenceOffset) * 10;
 
-                // 3. MOVE PARTICLE (separation removed for performance)
-                // We interpolate current position towards target orbital position
-                // This creates a smooth, "floaty" following effect
-                const lerpFactor = 0.02; // Very low for sluggish, heavy feel
-
+                // 3. MOVE PARTICLE
+                const lerpFactor = 0.02;
                 particle.x += (targetX + turbulenceX - particle.x) * lerpFactor;
                 particle.y += (targetY + turbulenceY - particle.y) * lerpFactor;
 
-                // Draw particle
-                const colorVariation = Math.sin(time + particle.turbulenceOffset) * 20;
-                // Redder Spice: High Red, Medium Green (less than before), Low Blue
-                const r = 255;
-                const g = 140 + colorVariation; // Reduced green for more redness
-                const b = 40 + colorVariation * 0.5;
+                // Draw particle using sprite
+                // Calculate size and opacity
+                // We can scale the sprite
 
-                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${particle.opacity})`;
-                ctx.shadowBlur = 15; // Increased glow
-                ctx.shadowColor = `rgba(${r}, ${g}, ${b}, 0.6)`;
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.shadowBlur = 0; // Reset for next operations
+                const drawSize = particle.size * 4; // Scale up because sprite includes glow
 
-                // No trails needed for very slow movement (they would just be dots)
-            });
+                ctx.globalAlpha = particle.opacity;
+                ctx.drawImage(
+                    particleCanvas,
+                    particle.x - drawSize / 2,
+                    particle.y - drawSize / 2,
+                    drawSize,
+                    drawSize
+                );
+            }
+            ctx.globalAlpha = 1.0; // Reset alpha
 
             animationFrameId = requestAnimationFrame(animate);
         };
@@ -163,7 +175,7 @@ const SandstormEffect = () => {
         animate();
 
         return () => {
-            window.removeEventListener('resize', setCanvasSize);
+            window.removeEventListener('resize', handleResize);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);

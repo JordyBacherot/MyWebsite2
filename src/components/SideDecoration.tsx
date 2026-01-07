@@ -22,26 +22,26 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
 
     // --- DUNE MODE CONFIG (Slower) ---
     const duneAnimConfig = {
-        dune1: { 
-            duration: 10, 
-            yBack: ["0%", "5%", "0%"], 
-            yMid: ["0%", "-5%", "0%"], 
+        dune1: {
+            duration: 10,
+            yBack: ["0%", "5%", "0%"],
+            yMid: ["0%", "-5%", "0%"],
             yFront: ["0%", "8%", "0%"],
             particleCount: 12,
             particleSpeed: 0.5
         },
-        dune2: { 
-            duration: 15, 
-            yBack: ["0%", "8%", "0%"], 
-            yMid: ["0%", "-8%", "0%"], 
+        dune2: {
+            duration: 15,
+            yBack: ["0%", "8%", "0%"],
+            yMid: ["0%", "-8%", "0%"],
             yFront: ["0%", "12%", "0%"],
             particleCount: 18,
             particleSpeed: 0.3
         },
-        mountain: { 
-            duration: 12, 
-            yBack: ["0%", "3%", "0%"], 
-            yMid: ["0%", "-2%", "0%"], 
+        mountain: {
+            duration: 12,
+            yBack: ["0%", "3%", "0%"],
+            yMid: ["0%", "-2%", "0%"],
             yFront: ["0%", "4%", "0%"],
             particleCount: 8,
             particleSpeed: 0.6
@@ -66,7 +66,7 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
 
         let count = 12;
         let speed = 1;
-        
+
         if (mode === 'dune') {
             count = config.particleCount;
             speed = config.particleSpeed;
@@ -78,7 +78,7 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
             speed = 0.5;
         } else if (mode === 'storm') {
             count = 50;
-            speed = 15; 
+            speed = 15;
         }
 
         const newParticles = Array.from({ length: count }, (_, i) => {
@@ -100,8 +100,8 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
     }, []); // Empty array = run once on mount only
 
     // Determine positioning and mirroring
-    const positionStyle = side === 'left' 
-        ? { left: 0, transform: 'scaleX(1)' } 
+    const positionStyle = side === 'left'
+        ? { left: 0, transform: 'scaleX(1)' }
         : { right: 0, transform: 'scaleX(-1)' };
 
     const getDunePaths = () => {
@@ -132,7 +132,7 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
     const paths = getDunePaths();
 
     return (
-        <div 
+        <div
             ref={ref}
             style={positionStyle}
             className={`absolute top-0 bottom-0 w-[300px] xl:w-[450px] pointer-events-none z-0 hidden lg:block overflow-hidden ${className}`}
@@ -155,7 +155,8 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
                                 height: p.size,
                                 left: `${p.x}%`,
                                 top: `${p.y}%`,
-                                opacity: 0.6
+                                opacity: 0.6,
+                                willChange: "transform, opacity"
                             }}
                             animate={{
                                 y: [0, -50, 0],
@@ -169,13 +170,13 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
                         />
                     ))}
                     {/* Layers - smooth parallax only, no conflicting animations */}
-                    <motion.div style={{ y: yBack }} className="absolute inset-0 text-dune-copper opacity-30">
+                    <motion.div style={{ y: yBack, willChange: "transform" }} className="absolute inset-0 text-dune-copper opacity-30">
                         <svg viewBox="0 0 500 800" className="w-full h-full" preserveAspectRatio="none"><path fill="currentColor" d={paths.back} /></svg>
                     </motion.div>
-                    <motion.div style={{ y: yMid }} className="absolute inset-0 text-dune-orange opacity-30">
+                    <motion.div style={{ y: yMid, willChange: "transform" }} className="absolute inset-0 text-dune-orange opacity-30">
                         <svg viewBox="0 0 500 800" className="w-full h-full" preserveAspectRatio="none"><path fill="currentColor" d={paths.mid} /></svg>
                     </motion.div>
-                    <motion.div style={{ y: yFront }} className="absolute inset-0 text-dune-glow opacity-20">
+                    <motion.div style={{ y: yFront, willChange: "transform" }} className="absolute inset-0 text-dune-glow opacity-20">
                         <svg viewBox="0 0 500 800" className="w-full h-full" preserveAspectRatio="none"><path fill="currentColor" d={paths.front} /></svg>
                     </motion.div>
                 </>
@@ -199,6 +200,7 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
                                     repeat: Infinity,
                                     ease: "linear"
                                 }}
+                                style={{ willChange: "transform, opacity" }}
                             >
                                 {p.type === 'circle' && <circle r={p.size * 2} fill="none" stroke="currentColor" strokeWidth="1" className="text-dune-orange" />}
                                 {p.type === 'square' && <rect width={p.size * 4} height={p.size * 4} fill="none" stroke="currentColor" strokeWidth="1" className="text-dune-copper" />}
@@ -220,7 +222,8 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
                                 width: p.size * 20,
                                 left: `${p.x}%`,
                                 top: `${p.y}%`,
-                                opacity: 0.5
+                                opacity: 0.5,
+                                willChange: "transform, opacity"
                             }}
                             animate={{
                                 x: ["-50%", "50%"], // Reduced distance

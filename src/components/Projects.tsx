@@ -9,8 +9,13 @@ const Projects = () => {
 
     return (
         <section id="projets" className="py-24 w-full relative overflow-hidden">
-            <SideDecoration side="left" variant="dune1" mode="sandworm" className="left-0 top-10" />
-            <SideDecoration side="right" variant="dune2" mode="sandworm" className="right-0 top-40" />
+            {/* Side Decorations - Desktop Only */}
+            {typeof window !== 'undefined' && window.innerWidth >= 1024 && (
+                <>
+                    <SideDecoration side="left" variant="dune1" mode="sandworm" className="left-0 top-10" />
+                    <SideDecoration side="right" variant="dune2" mode="sandworm" className="right-0 top-40" />
+                </>
+            )}
 
             <div className="container mx-auto px-6 max-w-6xl relative z-10">
                 <div className="flex flex-col items-center mb-16 space-y-4">
@@ -34,6 +39,7 @@ const Projects = () => {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 }}
                             className="group h-[350px] [perspective:1000px]"
+                            style={{ willChange: "opacity, transform" }}
                         >
                             <div className="relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                                 {/* Front Face */}
