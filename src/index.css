@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +8,14 @@
   font-family: 'Dune Rise';
   src: url('./assets/fonts/Dune_Rise.ttf') format('truetype'),
     url('./assets/fonts/Dune_Rise.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cyberpunk';
+  src: url('./assets/fonts/Cyberpunk.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -39,19 +49,17 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
 
-    /* Dune Light Mode (Day Desert) */
-    --dune-base: 30 40% 82%;
-    /* Light warm sand #f5efe9 */
-    --dune-sand: 20 20% 10%;
-    /* Darker brown for text #1f1713 */
-    --dune-copper: 23 63% 52%;
-    /* Metallic copper #d17136 */
-    --dune-orange: 37 70% 49%;
-    /* Vibrant spice orange #d29026 */
-    --dune-glow: 38 50% 60%;
-    /* Glowing amber #daad64 */
-    --dune-shadow: 30 15% 85%;
-    /* Soft shadow #e0d8d2 */
+    /* Dynamic Fonts */
+    --font-heading: 'Dune Rise', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Semantic Theme (Default: Dune Light) */
+    --theme-base: 30 40% 82%;
+    --theme-surface: 20 20% 10%;
+    --theme-primary: 23 63% 52%;
+    --theme-accent: 37 70% 49%;
+    --theme-glow: 38 50% 60%;
+    --theme-shadow: 30 15% 85%;
   }
 
   .dark {
@@ -80,19 +88,39 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
 
-    /* Dune Dark Mode (Night Desert) */
-    --dune-base: 0 20% 5%;
-    /* Deep warm black #0f0a0a */
-    --dune-sand: 30 30% 87%;
-    /* Pale sand #e8dcd1 */
-    --dune-copper: 23 63% 52%;
-    /* Metallic copper #d17136 */
-    --dune-orange: 37 70% 49%;
-    /* Vibrant spice orange #d29026 */
-    --dune-glow: 38 50% 60%;
-    /* Glowing amber #daad64 */
-    --dune-shadow: 0 11% 2%;
-    /* Deepest shadow #050404 */
+    /* Semantic Theme (Dune Dark) */
+    --theme-base: 0 20% 5%;
+    --theme-surface: 30 30% 87%;
+    --theme-primary: 23 63% 52%;
+    --theme-accent: 37 70% 49%;
+    --theme-glow: 38 50% 60%;
+    --theme-shadow: 0 11% 2%;
+  }
+
+  .universe-cyberpunk {
+    --font-heading: 'Cyberpunk', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+
+    /* Enforce Light text for High Contrast in Cyberpunk mode */
+    --foreground: 0 0% 95%;
+
+    /* Semantic Theme (Cyberpunk Light mapped to Dark to prevent Light mode issues) */
+    --theme-base: 0 0% 3%; /* Pitch black */
+    --theme-surface: 0 0% 90%; /* Light gray / Off-white for TEXT */
+    --theme-primary: 50 98% 64%; /* Cyber Yellow #FDE047 */
+    --theme-accent: 45 93% 50%; /* Amber #F59E0B */
+    --theme-glow: 54 99% 77%; /* Bright Pale Yellow */
+    --theme-shadow: 0 0% 0%; /* Pitch black */
+  }
+
+  .universe-cyberpunk.dark {
+    /* Semantic Theme (Cyberpunk Dark) */
+    --theme-base: 0 0% 3%;
+    --theme-surface: 0 0% 90%;
+    --theme-primary: 50 98% 64%;
+    --theme-accent: 45 93% 50%;
+    --theme-glow: 54 99% 77%;
+    --theme-shadow: 0 0% 0%;
   }
 }
 

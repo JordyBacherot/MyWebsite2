@@ -23,14 +23,14 @@ const Experience = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="font-dune text-2xl md:text-3xl lg:text-4xl font-bold text-dune-copper tracking-[0.2em] uppercase"
+                        className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-theme-primary tracking-[0.2em] uppercase"
                     >
                         {t.experience.title}
                     </motion.h2>
-                    <div className="h-1 w-24 bg-dune-orange rounded-full"></div>
+                    <div className="h-1 w-24 bg-theme-accent rounded-full"></div>
                 </div>
 
-                <div className="relative border-l-2 border-dune-copper/20 ml-4 md:ml-1/2 space-y-12">
+                <div className="relative border-l-2 border-theme-primary/20 ml-4 md:ml-1/2 space-y-12">
                     {experiences.map((exp, index) => (
                         <motion.div
                             key={index}
@@ -42,34 +42,34 @@ const Experience = () => {
                             style={{ willChange: "opacity, transform" }}
                         >
                             {/* Timeline Dot */}
-                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-dune-base border-2 border-dune-orange shadow-[0_0_10px_rgba(255,85,0,0.5)]"></div>
+                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-theme-base border-2 border-theme-accent shadow-[0_0_10px_rgba(255,85,0,0.5)]"></div>
 
                             {/* Spice Glow Card Wrapper */}
                             <div className="relative group/card transition-all duration-500 hover:scale-[1.02] hover:z-10">
                                 {/* Gradient Border/Glow */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-dune-orange via-dune-copper to-dune-base rounded-xl opacity-0 group-hover/card:opacity-100 transition-all duration-500 blur-[1px] group-hover/card:blur-sm group-hover/card:shadow-[0_0_30px_rgba(210,144,38,0.4)]" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-theme-accent via-theme-primary to-theme-base rounded-xl opacity-0 group-hover/card:opacity-100 transition-all duration-500 blur-[1px] group-hover/card:blur-sm group-hover/card:shadow-[0_0_30px_rgba(210,144,38,0.4)]" />
 
                                 {/* Inner Content */}
-                                <div className="relative bg-dune-base/40 backdrop-blur-sm border border-dune-copper/20 rounded-xl p-[1px] overflow-hidden group-hover/card:bg-dune-base group-hover/card:border-transparent transition-colors duration-500">
-                                    <div className="relative bg-dune-base/40 group-hover/card:bg-dune-base rounded-xl p-6 transition-all duration-300">
+                                <div className="relative bg-theme-base/40 backdrop-blur-sm border border-theme-primary/20 rounded-xl p-[1px] overflow-hidden group-hover/card:bg-theme-base group-hover/card:border-transparent transition-colors duration-500">
+                                    <div className="relative bg-theme-base/40 group-hover/card:bg-theme-base rounded-xl p-6 transition-all duration-300">
                                         <div className="flex justify-between items-start flex-wrap gap-2 mb-4">
                                             <div>
-                                                <h3 className="text-xl text-dune-sand font-bold group-hover/card:text-dune-orange transition-colors duration-300">
+                                                <h3 className="text-xl text-theme-surface font-bold group-hover/card:text-theme-accent transition-colors duration-300">
                                                     {exp.title}
                                                 </h3>
-                                                <p className="text-dune-copper mt-1 font-medium">{exp.organization}</p>
+                                                <p className="text-theme-primary mt-1 font-medium">{exp.organization}</p>
                                             </div>
-                                            <Badge variant="outline" className="border-dune-orange text-dune-orange rounded-full px-3 py-1 uppercase tracking-wider text-xs shadow-[0_0_10px_rgba(255,85,0,0.2)] group-hover/card:shadow-[0_0_15px_rgba(255,85,0,0.6)] transition-shadow duration-300">
+                                            <Badge variant="outline" className="border-theme-accent text-theme-accent rounded-full px-3 py-1 uppercase tracking-wider text-xs shadow-[0_0_10px_rgba(255,85,0,0.2)] group-hover/card:shadow-[0_0_15px_rgba(255,85,0,0.6)] transition-shadow duration-300">
                                                 {exp.period}
                                             </Badge>
                                         </div>
-                                        <p className="text-dune-sand/70 mb-4 group-hover/card:text-dune-sand/90 transition-colors duration-300">{exp.description}</p>
-                                        <Badge className="bg-dune-copper/10 text-dune-copper group-hover/card:bg-dune-copper/20 rounded-full uppercase text-xs tracking-widest transition-colors duration-300 mr-2">
+                                        <p className="text-theme-surface/70 mb-4 group-hover/card:text-theme-surface/90 transition-colors duration-300">{exp.description}</p>
+                                        <Badge className="bg-theme-primary/10 text-theme-primary group-hover/card:bg-theme-primary/20 rounded-full uppercase text-xs tracking-widest transition-colors duration-300 mr-2">
                                             {exp.type}
                                         </Badge>
                                         {/* Uniquement si descriptionPlus est non vide */}
                                         {exp.descriptionPlus && (
-                                            <Badge className="bg-dune-copper/10 text-dune-copper group-hover/card:bg-dune-copper/20 rounded-full uppercase text-xs tracking-widest transition-colors duration-300">
+                                            <Badge className="bg-theme-primary/10 text-theme-primary group-hover/card:bg-theme-primary/20 rounded-full uppercase text-xs tracking-widest transition-colors duration-300">
                                                 {exp.descriptionPlus}
                                             </Badge>
                                         )}

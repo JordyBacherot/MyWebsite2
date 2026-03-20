@@ -12,7 +12,7 @@ const LanguageToggle: React.FC = () => {
     return (
         <button
             onClick={toggleLanguage}
-            className="relative px-3 py-1.5 rounded-lg flex items-center justify-center group cursor-pointer bg-dune-copper/10 hover:bg-dune-orange/20 border border-dune-copper/30 hover:border-dune-orange/50 transition-all duration-300"
+            className="relative px-3 py-1.5 rounded-lg flex items-center justify-center group cursor-pointer bg-theme-primary/10 hover:bg-theme-accent/20 border border-theme-primary/30 hover:border-theme-accent/50 transition-all duration-300"
             aria-label="Toggle language"
         >
             <motion.div
@@ -25,11 +25,11 @@ const LanguageToggle: React.FC = () => {
                     duration: 0.3,
                 }}
             >
-                <span className="text-dune-copper group-hover:text-dune-orange font-bold text-xs uppercase tracking-wider transition-colors">
+                <span className="text-theme-primary group-hover:text-theme-accent font-bold text-xs uppercase tracking-wider transition-colors">
                     {language}
                 </span>
                 <svg
-                    className="w-3 h-3 text-dune-copper group-hover:text-dune-orange transition-colors"
+                    className="w-3 h-3 text-theme-primary group-hover:text-theme-accent transition-colors"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

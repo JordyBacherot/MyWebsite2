@@ -97,10 +97,10 @@ export const translations: Record<Language, TranslationStructure> = {
             professional: "Expériences Professionnelles",
             experiences: [
                 {
-                    title: "Master en Sciences Cognitives",
+                    title: "Master Sciences Cognitives",
                     organization: "IDMC",
                     period: "2024 - Présent",
-                    description: "Parcours IACH : Intelligence Artificielle Centrée Humain. Formation avancée en IA et cognition.",
+                    description: "Parcours IACH : Intelligence Artificielle Centrée Humain.",
                     descriptionPlus: "Major de M1",
                     type: "Académique"
                 },
@@ -108,15 +108,15 @@ export const translations: Record<Language, TranslationStructure> = {
                     title: "Alternance Ingénieur IA",
                     organization: "Direction du Numérique - Université de Lorraine",
                     period: "2024 - Présent",
-                    description: "Intégration de solutions d'IA générative (LLM/RAG) et développement d'outils intelligents.",
+                    description: "Intégration de solutions d'IA générative (LLM/RAG).",
                     type: "Professionnel"
                 },
                 {
                     title: "Licence MIASHS",
                     organization: "Université de Lorraine",
                     period: "2021 - 2024",
-                    description: "Mathématiques et Informatique Appliquées aux Sciences Humaines et Sociales.",
-                    descriptionPlus: "Major de Promotion",
+                    description: "Mathématiques et Informatique Appliquées aux Sciences Humaines et Sociales. Parcours Sciences Cognitives",
+                    descriptionPlus: "Major de Promotion - Parcours Sciences Cognitives",
                     type: "Académique"
                 }
             ],
@@ -130,12 +130,12 @@ export const translations: Record<Language, TranslationStructure> = {
                     skills: ["Machine Learning", "Deep Learning", "Scikit-Learn", "PyTorch", "TensorFlow/Keras"]
                 },
                 {
-                    name: "Intégration & Génération IA",
+                    name: "Intégration IA",
                     skills: ["LLMs", "RAG", "LangChain", "LangGraph", "LangFuse", "Ollama", "HuggingFace"]
                 },
                 {
                     name: "Développement Web & Logiciel",
-                    skills: ["Python", "Java", "TypeScript", "React", "SQL", "Git", "Docker", "PostgreSQL", "Supabase"]
+                    skills: ["Python", "Java", "TypeScript", "React", "Flutter", "Hono", "SQL", "Git", "PostgreSQL/MariaDB", "Supabase", "Docker", "CI/CD", "VPS"]
                 },
                 {
                     name: "Sciences Cognitives & UX",
@@ -161,27 +161,27 @@ export const translations: Record<Language, TranslationStructure> = {
                     tags: ["Projet Personnel", "React", "TypeScript", "Tailwind", "Bun"]
                 },
                 {
-                    title: "Logiciel de gestion de commandes",
-                    theme: "Développement Web - Familial",
-                    description: "Logiciel de gestion de commandes interne entre deux boucheries du même propriétaire. Site non utilisé.",
-                    tags: ["Projet Personnel", "React", "TypeScript", "Tailwind", "Bun", "Supabase"]
-                },
-                {
                     title: "Algorithme de recommandation de jeux steams",
                     theme: "Embedding + ANN - Académique",
                     description: "Algorithme de recommandation de jeux steams basé sur un ANN (approximate nearest neighbors) et sur les embeddings des utilisateurs.",
                     tags: ["Projet Académique", "Python", "Pytorch", "Embedding", "ANN"]
                 },
                 {
+                    title: "Application fullstack Flutter + Hono de recommandation de jeux",
+                    theme: "Développement Web - Académique",
+                    description: "Application fullstack de recommandation de jeux steams basé sur le projet d'Algorithme de recommandation de jeux steams. Application déployé sur un VPS avec docker.",
+                    tags: ["Projet Académique", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "Déploiement - VPS", "CI/CD"]
+                },
+                {
                     title: "Logiciel de gestion de commandes de restaurant",
                     theme: "Développement Web - Familial",
                     description: "Logiciel de gestion de commandes de restaurant conçu pour faciliter et accélérer la communication entre service et cuisine.",
-                    tags: ["Projet Personnel", "React", "TypeScript", "Tailwind", "Bun", "Neon", "PostgreSQL"]
+                    tags: ["Projet Personnel", "React", "TypeScript", "Tailwind", "Bun", "Supabase"]
                 },
                 {
                     title: "Création d'un chatbot (patient) d'entrainement aux examens de médecine ECOS",
                     theme: "Intégration IA - Alternance",
-                    description: "Création d'un chatbot d'entrainement aux examens de médecine ECOS. Chatbot jouant le rôle d'un patient et répondant aux questions de l'étudiant/médecin. Evaluation automatique de la discussion. Projet Abandonné",
+                    description: "Création d'un chatbot d'entrainement aux examens de médecine ECOS. Chatbot jouant le rôle d'un patient et répondant aux questions de l'étudiant/médecin. Evaluation automatique de la discussion.",
                     tags: ["Projet Professionnel", "LLM", "LangChain", "LangFuse", "VLLM"]
                 },
 

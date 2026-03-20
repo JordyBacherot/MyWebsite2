@@ -10,7 +10,7 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
     return (
         <button
             onClick={onToggle}
-            className="relative w-16 h-16 rounded-full flex items-center justify-center overflow-visible group cursor-pointer bg-transparent border-2 border-dune-copper/20 hover:border-dune-orange/40 transition-all duration-500"
+            className="relative w-16 h-16 rounded-full flex items-center justify-center overflow-visible group cursor-pointer bg-transparent border-2 border-theme-primary/20 hover:border-theme-accent/40 transition-all duration-500"
             aria-label="Toggle theme"
         >
             {/* Container for the planet and sun */}
@@ -234,7 +234,7 @@ const DuneThemeToggle: React.FC<DuneThemeToggleProps> = ({ isDarkMode, onToggle 
 
             {/* Hover effect - orbital ring */}
             <motion.div
-                className="absolute inset-0 rounded-full border border-dune-orange/0 group-hover:border-dune-orange/30 transition-all duration-500"
+                className="absolute inset-0 rounded-full border border-theme-accent/0 group-hover:border-theme-accent/30 transition-all duration-500"
                 whileHover={{
                     scale: 1.05,
                     borderColor: 'rgba(184, 115, 51, 0.5)',

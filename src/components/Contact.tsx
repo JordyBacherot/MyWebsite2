@@ -28,7 +28,7 @@ const Contact = () => {
         if (cooldown > 0) return;
 
         // Construct mailto link
-        const mailtoLink = `mailto:jordybacherot.link@outlook.fr?subject=Contact de ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(
+        const mailtoLink = `mailto:jordybacherot.@outlook.fr?subject=Contact de ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(
             `Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
         )}`;
 
@@ -85,7 +85,7 @@ const Contact = () => {
                 {particles.map((particle) => (
                     <motion.div
                         key={particle.id}
-                        className="absolute w-1 h-1 bg-dune-copper rounded-full"
+                        className="absolute w-1 h-1 bg-theme-primary rounded-full"
                         initial={{ x: `${particle.x}%`, y: `${particle.y}%`, opacity: 0 }}
                         animate={{
                             x: [`${particle.x}%`, `${particle.x + 20}%`, `${particle.x}%`],
@@ -108,16 +108,16 @@ const Contact = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="font-dune text-2xl md:text-3xl lg:text-4xl font-bold text-dune-copper tracking-[0.2em] uppercase"
+                        className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-theme-primary tracking-[0.2em] uppercase"
                     >
                         {t.contact.title}
                     </motion.h2>
-                    <div className="h-1 w-24 bg-dune-orange rounded-full"></div>
+                    <div className="h-1 w-24 bg-theme-accent rounded-full"></div>
                     <motion.p
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className="text-center text-dune-sand/70 max-w-2xl text-lg"
+                        className="text-center text-theme-surface/70 max-w-2xl text-lg"
                     >
                         {t.contact.subtitle}
                     </motion.p>
@@ -135,9 +135,9 @@ const Contact = () => {
                         {/* Social links card */}
                         <motion.div
                             whileHover={{ scale: 1.03, y: -5 }}
-                            className="bg-gradient-to-br from-dune-copper/10 to-dune-orange/5 p-6 rounded-2xl border border-dune-copper/20 backdrop-blur-sm hover:border-dune-orange/40 transition-all duration-500"
+                            className="bg-gradient-to-br from-theme-primary/10 to-theme-accent/5 p-6 rounded-2xl border border-theme-primary/20 backdrop-blur-sm hover:border-theme-accent/40 transition-all duration-500"
                         >
-                            <h3 className="font-bold text-dune-copper mb-4 tracking-wider">{t.contact.networks}</h3>
+                            <h3 className="font-bold text-theme-primary mb-4 tracking-wider">{t.contact.networks}</h3>
                             <div className="flex gap-3">
                                 {[
                                     { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/jordy-bacherot/" },
@@ -150,7 +150,7 @@ const Contact = () => {
                                         rel="noopener noreferrer"
                                         whileHover={{ scale: 1.15, rotate: 10 }}
                                         whileTap={{ scale: 0.95 }}
-                                        className="p-3 rounded-full bg-dune-copper/20 text-dune-copper hover:bg-dune-orange hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(210,144,38,0.5)]"
+                                        className="p-3 rounded-full bg-theme-primary/20 text-theme-primary hover:bg-theme-accent hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(210,144,38,0.5)]"
                                         aria-label={label}
                                     >
                                         <Icon size={24} />
@@ -165,12 +165,12 @@ const Contact = () => {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
-                            className="bg-gradient-to-br from-dune-orange/10 to-transparent p-6 rounded-2xl border border-dune-orange/20 italic"
+                            className="bg-gradient-to-br from-theme-accent/10 to-transparent p-6 rounded-2xl border border-theme-accent/20 italic"
                         >
-                            <p className="text-dune-glow text-sm leading-relaxed">
+                            <p className="text-theme-glow text-sm leading-relaxed">
                                 "{t.contact.quote}"
                             </p>
-                            <p className="text-dune-copper/60 text-xs mt-2 text-right">{t.contact.quoteAuthor}</p>
+                            <p className="text-theme-primary/60 text-xs mt-2 text-right">{t.contact.quoteAuthor}</p>
                         </motion.div>
                     </motion.div>
 
@@ -199,12 +199,12 @@ const Contact = () => {
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
                             <form
-                                className="relative bg-gradient-to-br from-dune-base/40 to-dune-copper/5 p-8 md:p-10 rounded-3xl border-2 border-dune-copper/30 backdrop-blur-md shadow-2xl"
+                                className="relative bg-gradient-to-br from-theme-base/40 to-theme-primary/5 p-8 md:p-10 rounded-3xl border-2 border-theme-primary/30 backdrop-blur-md shadow-2xl"
                                 onSubmit={handleSubmit}
                             >
                                 {/* Spice glow effect */}
                                 <motion.div
-                                    className="absolute -inset-1 bg-gradient-to-r from-dune-orange/20 via-dune-copper/20 to-dune-orange/20 rounded-3xl blur-xl -z-10"
+                                    className="absolute -inset-1 bg-gradient-to-r from-theme-accent/20 via-theme-primary/20 to-theme-accent/20 rounded-3xl blur-xl -z-10"
                                     animate={{
                                         opacity: isHovered ? 0.8 : 0.3,
                                         scale: isHovered ? 1.05 : 1,
@@ -214,21 +214,21 @@ const Contact = () => {
 
                                 <div className="space-y-6">
                                     <div className="space-y-2">
-                                        <label className="text-xs uppercase tracking-widest text-dune-copper font-bold flex items-center gap-2">
-                                            <span className="w-2 h-2 bg-dune-orange rounded-full animate-pulse"></span>
+                                        <label className="text-xs uppercase tracking-widest text-theme-primary font-bold flex items-center gap-2">
+                                            <span className="w-2 h-2 bg-theme-accent rounded-full animate-pulse"></span>
                                             {t.contact.formLabels.identity}
                                         </label>
                                         <Input
                                             placeholder={t.contact.placeholders.name}
                                             value={formData.name}
                                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                            className="bg-dune-base/70 border-dune-copper/30 focus:border-dune-orange focus:ring-2 focus:ring-dune-orange/50 text-dune-sand placeholder:text-dune-sand/40 rounded-xl h-14 transition-all duration-300 hover:border-dune-orange/50"
+                                            className="bg-theme-base/70 border-theme-primary/30 focus:border-theme-accent focus:ring-2 focus:ring-theme-accent/50 text-theme-surface placeholder:text-theme-surface/40 rounded-xl h-14 transition-all duration-300 hover:border-theme-accent/50"
                                         />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-xs uppercase tracking-widest text-dune-copper font-bold flex items-center gap-2">
-                                            <span className="w-2 h-2 bg-dune-orange rounded-full animate-pulse"></span>
+                                        <label className="text-xs uppercase tracking-widest text-theme-primary font-bold flex items-center gap-2">
+                                            <span className="w-2 h-2 bg-theme-accent rounded-full animate-pulse"></span>
                                             {t.contact.formLabels.coordinates}
                                         </label>
                                         <Input
@@ -236,20 +236,20 @@ const Contact = () => {
                                             placeholder={t.contact.placeholders.email}
                                             value={formData.email}
                                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                            className="bg-dune-base/70 border-dune-copper/30 focus:border-dune-orange focus:ring-2 focus:ring-dune-orange/50 text-dune-sand placeholder:text-dune-sand/40 rounded-xl h-14 transition-all duration-300 hover:border-dune-orange/50"
+                                            className="bg-theme-base/70 border-theme-primary/30 focus:border-theme-accent focus:ring-2 focus:ring-theme-accent/50 text-theme-surface placeholder:text-theme-surface/40 rounded-xl h-14 transition-all duration-300 hover:border-theme-accent/50"
                                         />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-xs uppercase tracking-widest text-dune-copper font-bold flex items-center gap-2">
-                                            <span className="w-2 h-2 bg-dune-orange rounded-full animate-pulse"></span>
+                                        <label className="text-xs uppercase tracking-widest text-theme-primary font-bold flex items-center gap-2">
+                                            <span className="w-2 h-2 bg-theme-accent rounded-full animate-pulse"></span>
                                             {t.contact.formLabels.transmission}
                                         </label>
                                         <Textarea
                                             placeholder={t.contact.placeholders.message}
                                             value={formData.message}
                                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                            className="bg-dune-base/70 border-dune-copper/30 focus:border-dune-orange focus:ring-2 focus:ring-dune-orange/50 text-dune-sand placeholder:text-dune-sand/40 rounded-xl min-h-[160px] transition-all duration-300 hover:border-dune-orange/50 resize-none"
+                                            className="bg-theme-base/70 border-theme-primary/30 focus:border-theme-accent focus:ring-2 focus:ring-theme-accent/50 text-theme-surface placeholder:text-theme-surface/40 rounded-xl min-h-[160px] transition-all duration-300 hover:border-theme-accent/50 resize-none"
                                         />
                                     </div>
 
@@ -262,8 +262,8 @@ const Contact = () => {
                                             type="submit"
                                             disabled={cooldown > 0}
                                             className={`w-full font-bold tracking-[0.3em] uppercase rounded-xl h-14 text-sm relative overflow-hidden group transition-all duration-500 shadow-lg ${cooldown > 0
-                                                    ? 'bg-dune-copper/30 text-dune-sand/50 cursor-not-allowed'
-                                                    : 'bg-gradient-to-r from-dune-copper via-dune-orange to-dune-copper bg-size-200 bg-pos-0 hover:bg-pos-100 text-white hover:shadow-[0_0_30px_rgba(210,144,38,0.6)]'
+                                                ? 'bg-theme-primary/30 text-theme-surface/50 cursor-not-allowed'
+                                                : 'bg-gradient-to-r from-theme-primary via-theme-accent to-theme-primary bg-size-200 bg-pos-0 hover:bg-pos-100 text-white hover:shadow-[0_0_30px_rgba(210,144,38,0.6)]'
                                                 }`}
                                         >
                                             {/* Animated background */}
@@ -288,7 +288,7 @@ const Contact = () => {
                                     </motion.div>
 
                                     {/* Footer note */}
-                                    <p className="text-center text-xs text-dune-sand/50 italic pt-2">
+                                    <p className="text-center text-xs text-theme-surface/50 italic pt-2">
                                         {t.contact.footerNote}
                                     </p>
                                 </div>

@@ -138,9 +138,9 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
             className={`absolute top-0 bottom-0 w-[300px] xl:w-[450px] pointer-events-none z-0 hidden lg:block overflow-hidden ${className}`}
         >
             {/* Common Gradient Masks */}
-            <div className={`absolute inset-0 z-20 bg-gradient-to-${side === 'left' ? 'r' : 'l'} from-transparent via-transparent to-dune-base/5`} />
-            <div className="absolute inset-0 z-20 bg-gradient-to-t from-dune-base via-transparent to-transparent" />
-            <div className="absolute inset-0 z-20 bg-gradient-to-b from-dune-base via-transparent to-transparent" />
+            <div className={`absolute inset-0 z-20 bg-gradient-to-${side === 'left' ? 'r' : 'l'} from-transparent via-transparent to-theme-base/5`} />
+            <div className="absolute inset-0 z-20 bg-gradient-to-t from-theme-base via-transparent to-transparent" />
+            <div className="absolute inset-0 z-20 bg-gradient-to-b from-theme-base via-transparent to-transparent" />
 
             {/* --- DUNE MODE --- */}
             {mode === 'dune' && (
@@ -149,7 +149,7 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
                     {showParticles && particles.map((p) => (
                         <motion.div
                             key={p.id}
-                            className="absolute rounded-full bg-dune-orange z-10"
+                            className="absolute rounded-full bg-theme-accent z-10"
                             style={{
                                 width: p.size,
                                 height: p.size,
@@ -170,13 +170,13 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
                         />
                     ))}
                     {/* Layers - smooth parallax only, no conflicting animations */}
-                    <motion.div style={{ y: yBack, willChange: "transform" }} className="absolute inset-0 text-dune-copper opacity-30">
+                    <motion.div style={{ y: yBack, willChange: "transform" }} className="absolute inset-0 text-theme-primary opacity-30">
                         <svg viewBox="0 0 500 800" className="w-full h-full" preserveAspectRatio="none"><path fill="currentColor" d={paths.back} /></svg>
                     </motion.div>
-                    <motion.div style={{ y: yMid, willChange: "transform" }} className="absolute inset-0 text-dune-orange opacity-30">
+                    <motion.div style={{ y: yMid, willChange: "transform" }} className="absolute inset-0 text-theme-accent opacity-30">
                         <svg viewBox="0 0 500 800" className="w-full h-full" preserveAspectRatio="none"><path fill="currentColor" d={paths.mid} /></svg>
                     </motion.div>
-                    <motion.div style={{ y: yFront, willChange: "transform" }} className="absolute inset-0 text-dune-glow opacity-20">
+                    <motion.div style={{ y: yFront, willChange: "transform" }} className="absolute inset-0 text-theme-glow opacity-20">
                         <svg viewBox="0 0 500 800" className="w-full h-full" preserveAspectRatio="none"><path fill="currentColor" d={paths.front} /></svg>
                     </motion.div>
                 </>
@@ -202,9 +202,9 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
                                 }}
                                 style={{ willChange: "transform, opacity" }}
                             >
-                                {p.type === 'circle' && <circle r={p.size * 2} fill="none" stroke="currentColor" strokeWidth="1" className="text-dune-orange" />}
-                                {p.type === 'square' && <rect width={p.size * 4} height={p.size * 4} fill="none" stroke="currentColor" strokeWidth="1" className="text-dune-copper" />}
-                                {p.type === 'triangle' && <polygon points={`0,0 ${p.size * 4},0 ${p.size * 2},${p.size * 3.5}`} fill="none" stroke="currentColor" strokeWidth="1" className="text-dune-glow" />}
+                                {p.type === 'circle' && <circle r={p.size * 2} fill="none" stroke="currentColor" strokeWidth="1" className="text-theme-accent" />}
+                                {p.type === 'square' && <rect width={p.size * 4} height={p.size * 4} fill="none" stroke="currentColor" strokeWidth="1" className="text-theme-primary" />}
+                                {p.type === 'triangle' && <polygon points={`0,0 ${p.size * 4},0 ${p.size * 2},${p.size * 3.5}`} fill="none" stroke="currentColor" strokeWidth="1" className="text-theme-glow" />}
                             </motion.g>
                         ))}
                     </svg>
@@ -217,7 +217,7 @@ const SideDecoration = ({ side, variant, mode = 'dune', showParticles = true, cl
                     {particles.map((p) => (
                         <motion.div
                             key={p.id}
-                            className="absolute h-[1px] bg-gradient-to-r from-transparent via-dune-copper to-transparent"
+                            className="absolute h-[1px] bg-gradient-to-r from-transparent via-theme-primary to-transparent"
                             style={{
                                 width: p.size * 20,
                                 left: `${p.x}%`,

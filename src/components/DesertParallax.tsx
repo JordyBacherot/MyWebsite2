@@ -10,22 +10,22 @@ const DesertParallax = () => {
 
     // Parallax transforms
     // Background moves slowest
-    const yBack = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+    const yBack = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
     // Middle moves medium speed
-    const yMid = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+    const yMid = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
     // Front moves fastest
-    const yFront = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
+    const yFront = useTransform(scrollYProgress, [0, 1], ["0%", "120%"]);
 
     return (
         <div ref={ref} className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
             {/* Vignette Gradients (Smooth transition to page background) */}
-            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-dune-base to-transparent z-40" />
-            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-dune-base to-transparent z-40" />
+            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-theme-base to-transparent z-40" />
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-theme-base to-transparent z-40" />
 
             {/* Layer 1: Back Dunes (Darkest, Slowest) */}
             <motion.div
                 style={{ y: yBack, willChange: "transform" }}
-                className="absolute bottom-0 left-0 w-full h-[60%] md:h-[90%] z-10"
+                className="absolute bottom-0 left-0 w-full h-[75%] md:h-[105%] z-10"
             >
                 <svg viewBox="0 0 1440 320" className="w-full h-full preserve-3d" preserveAspectRatio="xMidYMax slice">
                     <path
@@ -39,9 +39,9 @@ const DesertParallax = () => {
             {/* Layer 1.5: Realistic Mountain (Left side feature) */}
             <motion.div
                 style={{ y: yMid, willChange: "transform" }}
-                className="absolute bottom-0 left-0 w-[85%] md:w-[40%] h-[40%] md:h-[80%] z-[15]"
+                className="absolute bottom-[-5%] left-[-5%] w-[120%] sm:w-[90%] md:w-[60%] lg:w-[45%] z-[15]"
             >
-                <svg viewBox="0 0 500 500" className="w-full h-full" preserveAspectRatio="xMidYMax slice">
+                <svg viewBox="0 0 500 500" className="w-full h-auto drop-shadow-2xl" preserveAspectRatio="xMinYMax meet">
                     {/* Mountain Base (Darkest) */}
                     <path
                         fill="#3e2723" // Very dark brown
@@ -65,7 +65,7 @@ const DesertParallax = () => {
             {/* Layer 2: Middle Dunes (Medium, Medium Speed) */}
             <motion.div
                 style={{ y: yMid, willChange: "transform" }}
-                className="absolute bottom-0 left-0 w-full h-[50%] md:h-[75%] z-20"
+                className="absolute bottom-0 left-0 w-full h-[65%] md:h-[90%] z-20"
             >
                 <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="xMidYMax slice">
                     <path
@@ -79,7 +79,7 @@ const DesertParallax = () => {
             {/* Layer 3: Front Dunes (Lightest, Fastest) */}
             <motion.div
                 style={{ y: yFront, willChange: "transform" }}
-                className="absolute bottom-0 left-0 w-full h-[35%] md:h-[55%] z-30"
+                className="absolute bottom-0 left-0 w-full h-[50%] md:h-[70%] z-30"
             >
                 <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="xMidYMax slice">
                     <path
@@ -89,7 +89,7 @@ const DesertParallax = () => {
                     ></path>
                 </svg>
                 {/* Gradient overlay for smooth transition to page background */}
-                <div className="absolute -bottom-1 left-0 w-full h-48 bg-gradient-to-t from-dune-base via-dune-base/90 to-transparent" />
+                <div className="absolute -bottom-1 left-0 w-full h-48 bg-gradient-to-t from-theme-base via-theme-base/90 to-transparent" />
             </motion.div>
         </div>
     );

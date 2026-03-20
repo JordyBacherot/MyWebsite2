@@ -2,11 +2,15 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import SandstormEffect from "./SandstormEffect";
 import DesertParallax from "./DesertParallax";
+import NightCityParallax from "./NightCityParallax";
+import CyberRainEffect from "./CyberRainEffect";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useUniverse } from "../contexts/UniverseContext";
 import { useState, useEffect } from "react";
 
 const Hero = () => {
     const { t } = useLanguage();
+    const { universe } = useUniverse();
     const [showEffects, setShowEffects] = useState(false);
 
     useEffect(() => {
@@ -20,16 +24,16 @@ const Hero = () => {
     return (
         <section id="profil" className="min-h-[90vh] relative w-full flex flex-col justify-center items-center overflow-hidden">
             {/* Layer 0: Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-dune-orange/10 rounded-full blur-[100px] pointer-events-none z-0" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-theme-accent/10 rounded-full blur-[100px] pointer-events-none z-0" />
 
-            {/* Layer 1: Desert Parallax */}
+            {/* Layer 1: Parallax Background */}
             <div className="absolute inset-0 z-0">
-                {showEffects && <DesertParallax />}
+                {showEffects && (universe === 'dune' ? <DesertParallax /> : <NightCityParallax />)}
             </div>
 
-            {/* Layer 2: Sandstorm Effect (Atmosphere overlay) */}
+            {/* Layer 2: Atmosphere overlay (Sandstorm / Cyber Rain) */}
             <div className="absolute inset-0 z-10 pointer-events-none">
-                {showEffects && <SandstormEffect />}
+                {showEffects && (universe === 'dune' ? <SandstormEffect /> : <CyberRainEffect />)}
             </div>
 
             {/* Layer 3: Content Container */}
@@ -39,7 +43,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
-                        className="font-dune text-3xl md:text-5xl lg:text-7xl font-bold text-dune-copper mb-4 tracking-tighter uppercase"
+                        className="font-heading text-3xl md:text-5xl lg:text-7xl font-bold text-theme-primary mb-4 tracking-[0.1em] uppercase"
                     >
                         {t.hero.name}
                     </motion.h1>
@@ -47,7 +51,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="max-w-2xl mx-auto text-lg md:text-xl text-dune-sand/80 leading-relaxed"
+                        className="max-w-2xl mx-auto text-lg md:text-xl text-theme-surface drop-shadow-md font-medium leading-relaxed"
                     >
                         {t.hero.description}
                     </motion.h2>
@@ -59,10 +63,10 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.8 }}
                     className="flex flex-col md:flex-row gap-6"
                 >
-                    <Button asChild className="bg-dune-orange text-white hover:bg-dune-glow hover:shadow-[0_0_20px_rgba(255,85,0,0.4)] transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
+                    <Button asChild className="bg-theme-accent text-white hover:bg-theme-glow hover:animate-spice-glow transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
                         <a href="#projets">{t.hero.viewProjects}</a>
                     </Button>
-                    <Button asChild variant="outline" className="bg-dune-sand border-dune-copper text-dune-copper hover:bg-dune-copper/10 hover:text-white hover:border-dune-orange transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
+                    <Button asChild variant="outline" className="bg-theme-base border-theme-primary text-theme-primary hover:bg-theme-primary/10 hover:text-theme-surface hover:border-theme-accent transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
                         <a href="#contact">{t.hero.contactMe}</a>
                     </Button>
                 </motion.div>

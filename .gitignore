@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.agent/
+design-system/
+cyber_design_system.md
+dune_ui_ux_recommendations.md

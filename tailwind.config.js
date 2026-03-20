@@ -8,6 +8,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
+				heading: ['var(--font-heading)', 'sans-serif'],
+				body: ['var(--font-body)', 'sans-serif'],
 				dune: ['"Dune Rise"', 'sans-serif'],
 			},
 			colors: {
@@ -44,20 +46,29 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Custom Dune Palette (Refined)
-				dune: {
-					base: "hsl(var(--dune-base))", // Deeper, warmer black/brown
-					sand: "hsl(var(--dune-sand))", // Pale sand
-					copper: "hsl(var(--dune-copper))", // Metallic copper
-					orange: "hsl(var(--dune-orange))", // Vibrant spice orange
-					glow: "hsl(var(--dune-glow))", // Glowing amber
-					shadow: "hsl(var(--dune-shadow))", // Deepest shadow
+				// Semantic Dual Theme Palette
+				theme: {
+					base: "hsl(var(--theme-base))",
+					surface: "hsl(var(--theme-surface))",
+					primary: "hsl(var(--theme-primary))",
+					accent: "hsl(var(--theme-accent))",
+					glow: "hsl(var(--theme-glow))",
+					shadow: "hsl(var(--theme-shadow))",
 				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			keyframes: {
+				'spice-glow': {
+					'0%, 100%': { boxShadow: '0 0 15px rgba(210, 144, 38, 0.4)' },
+					'50%': { boxShadow: '0 0 35px rgba(210, 144, 38, 0.8), 0 0 10px rgba(255, 255, 255, 0.2) inset' },
+				}
+			},
+			animation: {
+				'spice-glow': 'spice-glow 3s ease-in-out infinite',
 			}
 		}
 	},

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useUniverse } from '../contexts/UniverseContext';
 
 interface Particle {
     x: number;
@@ -23,6 +24,7 @@ interface Storm {
 
 const SandstormEffect = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const { universe } = useUniverse();
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -61,9 +63,10 @@ const SandstormEffect = () => {
 
         // Draw glowing dot
         const gradient = pCtx.createRadialGradient(halfSprite, halfSprite, 0, halfSprite, halfSprite, halfSprite);
-        gradient.addColorStop(0, 'rgba(255, 140, 40, 1)'); // Core
-        gradient.addColorStop(0.4, 'rgba(255, 100, 20, 0.5)'); // Glow
-        gradient.addColorStop(1, 'rgba(255, 100, 20, 0)'); // Fade
+        const isCyber = universe === 'cyberpunk';
+        gradient.addColorStop(0, isCyber ? 'rgba(253, 224, 71, 1)' : 'rgba(255, 140, 40, 1)'); // Core
+        gradient.addColorStop(0.4, isCyber ? 'rgba(253, 224, 71, 0.5)' : 'rgba(255, 100, 20, 0.5)'); // Glow
+        gradient.addColorStop(1, isCyber ? 'rgba(253, 224, 71, 0)' : 'rgba(255, 100, 20, 0)'); // Fade
 
         pCtx.fillStyle = gradient;
         pCtx.fillRect(0, 0, spriteSize, spriteSize);
@@ -178,7 +181,7 @@ const SandstormEffect = () => {
             window.removeEventListener('resize', handleResize);
             cancelAnimationFrame(animationFrameId);
         };
-    }, []);
+    }, [universe]);
 
     return (
         <canvas

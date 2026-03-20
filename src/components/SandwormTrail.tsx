@@ -33,8 +33,9 @@ const SandwormTrail = ({ variant = 'desktop-horizontal' }: SandwormTrailProps) =
         window.addEventListener('resize', handleResize);
 
         // --- CONFIGURATION ---
-        const WORM_SIZE = 100;
-        const SEGMENT_COUNT = 80; // Reduced from 120
+        const WORM_SIZE = 140;
+        const SEGMENT_COUNT = 100;
+
         const THUMPER_X_RATIO = 0.85;
 
         // --- STATE ---
@@ -42,8 +43,8 @@ const SandwormTrail = ({ variant = 'desktop-horizontal' }: SandwormTrailProps) =
         const isMobile = variant === 'mobile-vertical';
 
         // Mobile config overrides
-        const wormSize = isMobile ? 30 : WORM_SIZE; // Smaller on mobile
-        const segmentCount = isMobile ? 25 : SEGMENT_COUNT; // Drastically reduced on mobile
+        const wormSize = isMobile ? 45 : WORM_SIZE; // Smaller on mobile
+        const segmentCount = isMobile ? 40 : SEGMENT_COUNT; // Drastically reduced on mobile
 
         // Initial positions based on variant
         let wormX = isMobile ? canvas.width / 2 : -1000;
@@ -254,7 +255,7 @@ const SandwormTrail = ({ variant = 'desktop-horizontal' }: SandwormTrailProps) =
                 for (let side = -1; side <= 1; side += 2) {
                     for (let i = 0; i < segments.length; i += 3) {
                         const s = segments[i];
-                        const waveOffset = s.size * 1.2 * side;
+                        const waveOffset = s.size * 1.4 * side;
 
                         let waveX, waveY;
                         if (isMobile) {
@@ -269,8 +270,33 @@ const SandwormTrail = ({ variant = 'desktop-horizontal' }: SandwormTrailProps) =
                         else ctx.lineTo(waveX, waveY);
                     }
                 }
-                ctx.strokeStyle = `rgba(160, 82, 45, ${0.3 + wormOpacity * 0.2})`;
-                ctx.lineWidth = 3;
+                ctx.strokeStyle = `rgba(210, 144, 38, ${0.5 + wormOpacity * 0.3})`;
+                ctx.lineWidth = 5;
+                ctx.stroke();
+
+                // Inner thicker dust wave
+                ctx.beginPath();
+                for (let side = -1; side <= 1; side += 2) {
+                    for (let i = 0; i < segments.length; i += 4) {
+                        const s = segments[i];
+                        const waveOffset = s.size * 1.0 * side;
+
+                        let waveX, waveY;
+                        if (isMobile) {
+                            waveX = s.x + waveOffset;
+                            waveY = s.y - 10;
+                        } else {
+                            waveX = s.x - 20;
+                            waveY = s.y + waveOffset;
+                        }
+
+                        if (i === 0) ctx.moveTo(waveX, waveY);
+                        else ctx.lineTo(waveX, waveY);
+                    }
+                }
+                ctx.strokeStyle = `rgba(217, 119, 6, ${0.15 + wormOpacity * 0.15})`;
+                ctx.lineWidth = 20;
+                ctx.lineCap = 'round';
                 ctx.stroke();
 
 
@@ -416,7 +442,7 @@ const SandwormTrail = ({ variant = 'desktop-horizontal' }: SandwormTrailProps) =
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none z-0 mix-blend-multiply"
+            className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-80"
         />
     );
 };

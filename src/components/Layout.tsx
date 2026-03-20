@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import DuneThemeToggle from './DuneThemeToggle';
+import UniverseToggle from './UniverseToggle';
 import LanguageToggle from './LanguageToggle';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useUniverse } from '../contexts/UniverseContext';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -17,6 +19,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         return savedTheme !== 'light'; // Default to dark mode
     });
     const { t } = useLanguage();
+    const { universe } = useUniverse();
 
     useEffect(() => {
         // Apply theme to document
@@ -30,7 +33,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     }, [isDarkMode]);
 
     return (
-        <div className="min-h-screen bg-dune-base text-dune-sand font-sans selection:bg-dune-orange selection:text-white overflow-x-hidden relative transition-colors duration-500">
+        <div className="min-h-screen bg-theme-base text-theme-surface font-sans selection:bg-theme-accent selection:text-white overflow-x-hidden relative transition-colors duration-500">
             {/* Dynamic Background */}
             <motion.div
                 className="fixed inset-0 pointer-events-none z-0 opacity-20"
@@ -49,12 +52,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 }}>
             </div>
 
-            <header className="fixed top-0 left-0 right-0 z-40 bg-dune-base/80 backdrop-blur-md border-b border-dune-copper/10 transition-colors duration-500">
+            <header className="fixed top-0 left-0 right-0 z-40 bg-theme-base/80 backdrop-blur-md border-b border-theme-primary/10 transition-colors duration-500">
                 <div className="container mx-auto px-6 py-4 flex justify-between items-center">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="text-lg md:text-xl font-bold tracking-[0.3em] text-dune-copper uppercase font-dune"
+                        className="text-lg md:text-xl font-bold tracking-[0.3em] text-theme-primary uppercase font-heading"
                     >
                         Portfolio
                     </motion.div>
@@ -73,20 +76,23 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                         initial={{ opacity: 0, y: -10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.1 }}
-                                        className="hover:text-dune-orange transition-colors duration-300 relative group font-dune text-xs"
+                                        className="hover:text-theme-accent transition-colors duration-300 relative group font-heading text-xs"
                                     >
                                         {label}
-                                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-dune-orange transition-all duration-300 group-hover:w-full"></span>
+                                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-theme-accent transition-all duration-300 group-hover:w-full"></span>
                                     </motion.a>
                                 );
                             })}
                         </nav>
                         <div className="flex items-center gap-2">
+                            <UniverseToggle />
                             <LanguageToggle />
-                            <DuneThemeToggle
-                                isDarkMode={isDarkMode}
-                                onToggle={() => setIsDarkMode(!isDarkMode)}
-                            />
+                            {universe !== 'cyberpunk' && (
+                                <DuneThemeToggle
+                                    isDarkMode={isDarkMode}
+                                    onToggle={() => setIsDarkMode(!isDarkMode)}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -96,7 +102,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 {children}
             </main>
 
-            <footer className="border-t border-dune-copper/10 py-8 text-center text-dune-sand/50 text-xs tracking-widest uppercase relative z-10">
+            <footer className="border-t border-theme-primary/10 py-8 text-center text-theme-surface/50 text-xs tracking-widest uppercase relative z-10">
                 <p>&copy; {new Date().getFullYear()} - {t.footer.copyright}</p>
             </footer>
         </div >
