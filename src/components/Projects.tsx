@@ -44,13 +44,13 @@ const Projects = () => {
                                 <div className="absolute inset-0 [backface-visibility:hidden] bg-theme-base/40 backdrop-blur-md border border-theme-primary/20 rounded-xl p-6 flex flex-col justify-center items-center text-center shadow-lg shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_30px_rgba(255,85,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.05)]">
                                     <div className="h-2 w-full absolute top-0 left-0 bg-gradient-to-r from-theme-primary to-theme-accent opacity-50 rounded-t-xl" />
 
-                                    <h3 className="text-2xl font-bold text-theme-surface mb-2 group-hover:text-theme-accent transition-colors duration-300">
+                                    <h3 className="text-lg md:text-xl font-bold text-theme-surface mb-2 group-hover:text-theme-accent transition-colors duration-300 line-clamp-3">
                                         {project.title}
                                     </h3>
 
                                     <div className="w-12 h-1 bg-theme-accent/50 rounded-full my-4" />
 
-                                    <p className="text-theme-primary font-medium text-lg mb-6">
+                                    <p className="text-theme-primary font-medium text-sm md:text-base mb-6 px-2 line-clamp-2">
                                         {project.theme}
                                     </p>
 
@@ -64,14 +64,28 @@ const Projects = () => {
                                 </div>
 
                                 {/* Back Face */}
-                                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] bg-theme-base/90 backdrop-blur-xl border border-theme-accent/50 rounded-xl p-8 flex flex-col justify-center items-center text-center shadow-[0_0_30px_rgba(255,85,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.05)]">
-                                    <h3 className="text-xl font-bold text-theme-accent mb-4">
+                                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] bg-theme-base/90 backdrop-blur-xl border border-theme-accent/50 rounded-xl p-6 flex flex-col justify-between items-center text-center shadow-[0_0_30px_rgba(255,85,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.05)]">
+                                    <h3 className="text-xl font-bold text-theme-accent mb-2 shrink-0">
                                         {t.projects.details}
                                     </h3>
 
-                                    <p className="text-theme-surface/90 text-lg leading-relaxed mb-8">
-                                        {project.description}
-                                    </p>
+                                    <div className="flex-1 w-full overflow-y-auto flex items-center justify-center mb-4 pr-1">
+                                        <p className="text-theme-surface/90 text-[14px] leading-relaxed">
+                                            {project.description}
+                                        </p>
+                                    </div>
+
+                                    {project.link && (
+                                        <a 
+                                            href={project.link.startsWith('http') ? project.link : `https://${project.link}`} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="shrink-0 mt-auto px-6 py-2 bg-theme-primary text-theme-base font-bold rounded-full hover:bg-theme-glow hover:scale-105 transition-all duration-300"
+                                            onClick={(e) => e.stopPropagation()}
+                                        >
+                                            {t.projects.seeProject}
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>

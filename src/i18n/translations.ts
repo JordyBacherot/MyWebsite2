@@ -17,6 +17,7 @@ export interface ProjectItem {
     theme: string;
     description: string;
     tags: string[];
+    link?: string;
 }
 
 export interface TranslationStructure {
@@ -46,6 +47,7 @@ export interface TranslationStructure {
     projects: {
         title: string;
         details: string;
+        seeProject: string;
         items: ProjectItem[];
     };
     contact: {
@@ -147,6 +149,7 @@ export const translations: Record<Language, TranslationStructure> = {
         projects: {
             title: "Projets",
             details: "Détails",
+            seeProject: "Voir le projet",
             items: [
                 {
                     title: "Création de chatbots RAG",
@@ -170,13 +173,15 @@ export const translations: Record<Language, TranslationStructure> = {
                     title: "Application fullstack Flutter + Hono de recommandation de jeux",
                     theme: "Développement Web - Académique",
                     description: "Application fullstack de recommandation de jeux steams basé sur le projet d'Algorithme de recommandation de jeux steams. Application déployé sur un VPS avec docker.",
-                    tags: ["Projet Académique", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "Déploiement - VPS", "CI/CD"]
+                    tags: ["Projet Académique", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "Déploiement - VPS", "CI/CD"],
+                    link: "steam-reco-app.jordy-bacherot.fr"
                 },
                 {
-                    title: "Logiciel de gestion de commandes de restaurant",
-                    theme: "Développement Web - Familial",
-                    description: "Logiciel de gestion de commandes de restaurant conçu pour faciliter et accélérer la communication entre service et cuisine.",
-                    tags: ["Projet Personnel", "React", "TypeScript", "Tailwind", "Bun", "Supabase"]
+                    title: "Deep Learning - Application de détection de scènes dangereuses en extèrieur pour personne malvoyante",
+                    theme: "Deep Learning - Académique",
+                    description: "Application de détection d'éléments dangereux dans des environnements extérieurs pour personnes malvoyantes. Fine-tuning d'un modèle de vision mobile pour la détection d'obstacles. (basé sur les transformers). Si vous voulez en voir plus, consultez mon projet GitHub : DeepLearningProject_SceneHazardDetection",
+                    tags: ["Projet Académique", "Python", "Pytorch", "Deep Learning", "CNN", "Transformers"],
+                    link: "https://scene-hazard-detection.vercel.app/"
                 },
                 {
                     title: "Création d'un chatbot (patient) d'entrainement aux examens de médecine ECOS",
@@ -266,7 +271,7 @@ export const translations: Record<Language, TranslationStructure> = {
             title: "Skills",
             categories: [
                 {
-                    name: "Data Science",
+                    name: "Data Science & AI",
                     skills: ["Machine Learning", "Deep Learning", "Scikit-Learn", "PyTorch", "TensorFlow/Keras"]
                 },
                 {
@@ -274,12 +279,12 @@ export const translations: Record<Language, TranslationStructure> = {
                     skills: ["LLMs", "RAG", "LangChain", "LangGraph", "LangFuse", "Ollama", "HuggingFace"]
                 },
                 {
-                    name: "Development",
-                    skills: ["Python", "Java", "TypeScript", "React", "SQL", "Git", "Docker", "PostgreSQL", "Supabase"]
+                    name: "Web & Software Development",
+                    skills: ["Python", "Java", "TypeScript", "React", "Flutter", "Hono", "SQL", "Git", "PostgreSQL/MariaDB", "Supabase", "Docker", "CI/CD", "VPS"]
                 },
                 {
-                    name: "Cognitive Sciences",
-                    skills: ["Cognitive Psychology", "Neuroscience", "Statistics", "UX", "AI Challenges"]
+                    name: "Cognitive Science & UX",
+                    skills: ["Cognitive Psychology", "Neuroscience", "Statistics", "UX Design", "AI Ethics"]
                 },
             ],
         },
@@ -287,11 +292,12 @@ export const translations: Record<Language, TranslationStructure> = {
         projects: {
             title: "Projects",
             details: "Details",
+            seeProject: "See project",
             items: [
                 {
-                    title: "Creation of RAG Chatbots",
+                    title: "RAG Chatbot Development",
                     theme: "AI Integration - Apprenticeship",
-                    description: "Creation of RAG chatbots to assist with initial user questions on specific software.",
+                    description: "Development of RAG (Retrieval-Augmented Generation) chatbots to handle initial user queries regarding specific software.",
                     tags: ["Professional Project", "LLM", "RAG", "LangChain", "LangGraph", "LangFuse", "VLLM"]
                 },
                 {
@@ -301,30 +307,31 @@ export const translations: Record<Language, TranslationStructure> = {
                     tags: ["Personal Project", "React", "TypeScript", "Tailwind", "Bun"]
                 },
                 {
-                    title: "Order Management Software",
-                    theme: "Web Development - Family",
-                    description: "Internal order management software between two butcher shops owned by the same person. Site not used.",
-                    tags: ["Personal Project", "React", "TypeScript", "Tailwind", "Bun", "Supabase"]
-                },
-                {
                     title: "Steam Game Recommendation Algorithm",
                     theme: "Embedding + ANN - Academic",
-                    description: "Steam game recommendation algorithm based on an ANN (approximate nearest neighbors) and user embeddings.",
+                    description: "Game recommendation algorithm based on ANN (Approximate Nearest Neighbors) and user embeddings.",
                     tags: ["Academic Project", "Python", "Pytorch", "Embedding", "ANN"]
                 },
                 {
-                    title: "Restaurant Order Management Software",
-                    theme: "Web Development - Family",
-                    description: "Restaurant order management software designed to facilitate and speed up communication between service and kitchen.",
-                    tags: ["Personal Project", "React", "TypeScript", "Tailwind", "Bun", "Neon", "PostgreSQL"]
+                    title: "Fullstack Flutter + Hono Recommendation App",
+                    theme: "Web Development - Academic",
+                    description: "Fullstack Steam game recommendation application based on the recommendation algorithm project. Deployed on a VPS using Docker.",
+                    tags: ["Academic Project", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "VPS Deployment", "CI/CD"],
+                    link: "https://steam-reco-app.jordy-bacherot.fr"
                 },
                 {
-                    title: "Creation of a (Patient) Chatbot for ECOS Medical Exam Training",
+                    title: "Deep Learning - Outdoor Hazard Detection for the Visually Impaired",
+                    theme: "Deep Learning - Academic",
+                    description: "Hazard detection application for outdoor environments designed for visually impaired users. Fine-tuning of a mobile vision model for obstacle detection (transformer-based). If you want to see more, check out my Github project : DeepLearningProject_SceneHazardDetection",
+                    tags: ["Academic Project", "Python", "Pytorch", "Deep Learning", "CNN", "Transformers"],
+                    link: "https://scene-hazard-detection.vercel.app/"
+                },
+                {
+                    title: "OSCE Medical Training Chatbot (Patient Sim)",
                     theme: "AI Integration - Apprenticeship",
-                    description: "Creation of a training chatbot for ECOS medical exams. Chatbot playing the role of a patient and answering the student/doctor's questions. Automatic evaluation of the discussion. Project Abandoned",
+                    description: "Creation of a training chatbot for OSCE (Objective Structured Clinical Examination) medical exams. The chatbot acts as a patient, responding to student/doctor questions with automated conversation evaluation.",
                     tags: ["Professional Project", "LLM", "LangChain", "LangFuse", "VLLM"]
                 },
-
             ],
         },
         // Contact Section
