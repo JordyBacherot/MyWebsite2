@@ -149,7 +149,7 @@ export const translations: Record<Language, TranslationStructure> = {
         projects: {
             title: "Projets",
             details: "Détails",
-            seeProject: "Voir le projet",
+            seeProject: "Voir le site web",
             items: [
                 {
                     title: "Création de chatbots RAG",
@@ -172,7 +172,7 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "Application fullstack Flutter + Hono de recommandation de jeux",
                     theme: "Développement Web - Académique",
-                    description: "Application fullstack de recommandation de jeux steams basé sur le projet d'Algorithme de recommandation de jeux steams. Application déployé sur un VPS avec docker.",
+                    description: "Application fullstack de recommandation de jeux steams basé sur le projet d'Algorithme de recommandation de jeux steams. Application déployé sur un VPS avec docker. Si vous voulez en voir plus, consultez le projet GitHub : steam_reco_app",
                     tags: ["Projet Académique", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "Déploiement - VPS", "CI/CD"],
                     link: "steam-reco-app.jordy-bacherot.fr"
                 },
@@ -292,7 +292,7 @@ export const translations: Record<Language, TranslationStructure> = {
         projects: {
             title: "Projects",
             details: "Details",
-            seeProject: "See project",
+            seeProject: "See Website",
             items: [
                 {
                     title: "RAG Chatbot Development",
@@ -315,7 +315,7 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "Fullstack Flutter + Hono Recommendation App",
                     theme: "Web Development - Academic",
-                    description: "Fullstack Steam game recommendation application based on the recommendation algorithm project. Deployed on a VPS using Docker.",
+                    description: "Fullstack Steam game recommendation application based on the recommendation algorithm project. Deployed on a VPS using Docker. If you want to see more, check out the Github project : steam_reco_app",
                     tags: ["Academic Project", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "VPS Deployment", "CI/CD"],
                     link: "https://steam-reco-app.jordy-bacherot.fr"
                 },
@@ -329,7 +329,7 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "OSCE Medical Training Chatbot (Patient Sim)",
                     theme: "AI Integration - Apprenticeship",
-                    description: "Creation of a training chatbot for OSCE (Objective Structured Clinical Examination) medical exams. The chatbot acts as a patient, responding to student/doctor questions with automated conversation evaluation.",
+                    description: "Creation of a training chatbot for ECOS medical exams. The chatbot acts as a patient, responding to student/doctor questions with automated conversation evaluation.",
                     tags: ["Professional Project", "LLM", "LangChain", "LangFuse", "VLLM"]
                 },
             ],
