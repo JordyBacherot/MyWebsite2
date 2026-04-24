@@ -18,6 +18,7 @@ export interface ProjectItem {
     description: string;
     tags: string[];
     link?: string;
+    githubLink?: string;
 }
 
 export interface TranslationStructure {
@@ -166,16 +167,18 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "Application fullstack Flutter + Hono de recommandation de jeux",
                     theme: "Développement Web - Académique",
-                    description: "Application fullstack de recommandation de jeux steams basé sur le projet d'Algorithme de recommandation de jeux steams. Application déployé sur un VPS avec docker. Si vous voulez en voir plus, consultez le projet GitHub : steam_reco_app",
+                    description: "Application fullstack de recommandation de jeux Steam basée sur l'algorithme ANN. Déployée sur un VPS avec Docker.",
                     tags: ["Projet Académique", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "Déploiement - VPS", "CI/CD"],
-                    link: "steam-reco-app.jordy-bacherot.fr"
+                    link: "steam-reco-app.jordy-bacherot.fr",
+                    githubLink: "https://github.com/JordyBacherot/steam_reco_app"
                 },
                 {
                     title: "Deep Learning - Application de détection de scènes dangereuses en extèrieur pour personne malvoyante",
                     theme: "Deep Learning - Académique",
-                    description: "Application de détection d'éléments dangereux dans des environnements extérieurs pour personnes malvoyantes. Fine-tuning d'un modèle de vision mobile pour la détection d'obstacles. (basé sur les transformers). Si vous voulez en voir plus, consultez mon projet GitHub : DeepLearningProject_SceneHazardDetection",
+                    description: "Application de détection d'éléments dangereux en extérieur pour personnes malvoyantes. Fine-tuning d'un modèle de vision mobile pour la détection d'obstacles (transformer-based).",
                     tags: ["Projet Académique", "Python", "Pytorch", "Deep Learning", "CNN", "Transformers"],
-                    link: "https://scene-hazard-detection.vercel.app/"
+                    link: "https://scene-hazard-detection.vercel.app/",
+                    githubLink: "https://github.com/JordyBacherot/DeepLearningProject_SceneHazardDetection"
                 },
                 {
                     title: "Fine-Tuning LLM pour le Storytelling",
@@ -311,16 +314,18 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "Fullstack Flutter + Hono Recommendation App",
                     theme: "Web Development - Academic",
-                    description: "Fullstack Steam game recommendation application based on the recommendation algorithm project. Deployed on a VPS using Docker. If you want to see more, check out the Github project : steam_reco_app",
+                    description: "Fullstack Steam game recommendation app based on the ANN algorithm. Deployed on a VPS with Docker.",
                     tags: ["Academic Project", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "VPS Deployment", "CI/CD"],
-                    link: "https://steam-reco-app.jordy-bacherot.fr"
+                    link: "https://steam-reco-app.jordy-bacherot.fr",
+                    githubLink: "https://github.com/JordyBacherot/steam_reco_app"
                 },
                 {
                     title: "Deep Learning - Outdoor Hazard Detection for the Visually Impaired",
                     theme: "Deep Learning - Academic",
-                    description: "Hazard detection application for outdoor environments designed for visually impaired users. Fine-tuning of a mobile vision model for obstacle detection (transformer-based). If you want to see more, check out my Github project : DeepLearningProject_SceneHazardDetection",
+                    description: "Hazard detection app for outdoor environments designed for visually impaired users. Fine-tuning of a mobile vision model for obstacle detection (transformer-based).",
                     tags: ["Academic Project", "Python", "Pytorch", "Deep Learning", "CNN", "Transformers"],
-                    link: "https://scene-hazard-detection.vercel.app/"
+                    link: "https://scene-hazard-detection.vercel.app/",
+                    githubLink: "https://github.com/JordyBacherot/DeepLearningProject_SceneHazardDetection"
                 },
                 {
                     title: "LLM Fine-Tuning for Storytelling",
