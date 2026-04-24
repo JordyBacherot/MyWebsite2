@@ -23,6 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
+_bmad
+_bmad_output
+
 .agent/
 design-system/
 cyber_design_system.md

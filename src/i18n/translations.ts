@@ -154,14 +154,8 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "Création de chatbots RAG",
                     theme: "Intégration IA - Alternance",
-                    description: "Création de chatbots RAG pour l'assistance aux premières questions utilisateurs sur des logiciels spécifiques.",
+                    description: "Application permettant l'intégration de chatbots RAG dans des applications tierces via API, pour l'assistance aux premières questions utilisateurs sur des logiciels spécifiques.",
                     tags: ["Projet Professionnel", "LLM", "RAG", "LangChain", "LangGraph", "LangFuse", "VLLM"]
-                },
-                {
-                    title: "Ce site web",
-                    theme: "Développement Web - Personnel",
-                    description: "Site web personnel conçu pour présenter mes compétences et projets.",
-                    tags: ["Projet Personnel", "React", "TypeScript", "Tailwind", "Bun"]
                 },
                 {
                     title: "Algorithme de recommandation de jeux steams",
@@ -184,10 +178,18 @@ export const translations: Record<Language, TranslationStructure> = {
                     link: "https://scene-hazard-detection.vercel.app/"
                 },
                 {
-                    title: "Création d'un chatbot (patient) d'entrainement aux examens de médecine ECOS",
-                    theme: "Intégration IA - Alternance",
-                    description: "Création d'un chatbot d'entrainement aux examens de médecine ECOS. Chatbot jouant le rôle d'un patient et répondant aux questions de l'étudiant/médecin. Evaluation automatique de la discussion.",
-                    tags: ["Projet Professionnel", "LLM", "LangChain", "LangFuse", "VLLM"]
+                    title: "Fine-Tuning LLM pour le Storytelling",
+                    theme: "LLM - Académique",
+                    description: "Pipeline ML end-to-end pour fine-tuner Qwen 2.5 7B sur la génération de scripts YouTube narratifs (EGO, Lemmino, Squeezie…). Projet d'apprentissage centré sur QLoRA 4-bit et Unsloth, de l'extraction jusqu'à l'évaluation LLM-as-Judge.",
+                    tags: ["Projet Académique", "Python", "LLM", "QLoRA", "Unsloth", "HuggingFace", "vLLM", "FastAPI"],
+                    link: "https://github.com/JordyBacherot/FineTunning_LLM_StoryTelling"
+                },
+                {
+                    title: "Maison Bacherot — Site Vitrine",
+                    theme: "Développement Web - Familial",
+                    description: "Site vitrine pour la boucherie artisanale Maison Bacherot (Bourgogne).",
+                    tags: ["Projet Personnel", "React", "Vite", "Tailwind CSS v4", "Framer Motion", "GSAP"],
+                    link: "https://www.boucherie-mercurey.fr/"
                 },
 
             ],
@@ -297,14 +299,8 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "RAG Chatbot Development",
                     theme: "AI Integration - Apprenticeship",
-                    description: "Development of RAG (Retrieval-Augmented Generation) chatbots to handle initial user queries regarding specific software.",
+                    description: "Application enabling RAG chatbot integration into third-party apps via API, handling initial user queries on specific software.",
                     tags: ["Professional Project", "LLM", "RAG", "LangChain", "LangGraph", "LangFuse", "VLLM"]
-                },
-                {
-                    title: "This Website",
-                    theme: "Web Development - Personal",
-                    description: "Personal website designed to showcase my skills and projects.",
-                    tags: ["Personal Project", "React", "TypeScript", "Tailwind", "Bun"]
                 },
                 {
                     title: "Steam Game Recommendation Algorithm",
@@ -327,10 +323,18 @@ export const translations: Record<Language, TranslationStructure> = {
                     link: "https://scene-hazard-detection.vercel.app/"
                 },
                 {
-                    title: "OSCE Medical Training Chatbot (Patient Sim)",
-                    theme: "AI Integration - Apprenticeship",
-                    description: "Creation of a training chatbot for ECOS medical exams. The chatbot acts as a patient, responding to student/doctor questions with automated conversation evaluation.",
-                    tags: ["Professional Project", "LLM", "LangChain", "LangFuse", "VLLM"]
+                    title: "LLM Fine-Tuning for Storytelling",
+                    theme: "LLM - Academic",
+                    description: "End-to-end ML pipeline to fine-tune Qwen 2.5 7B on narrative YouTube script generation (EGO, Lemmino, Squeezie style…). Learning project focused on 4-bit QLoRA and Unsloth, from extraction to LLM-as-Judge evaluation.",
+                    tags: ["Academic Project", "Python", "LLM", "QLoRA", "Unsloth", "HuggingFace", "vLLM", "FastAPI"],
+                    link: "https://github.com/JordyBacherot/FineTunning_LLM_StoryTelling"
+                },
+                {
+                    title: "Maison Bacherot — Showcase Website",
+                    theme: "Web Development - Family",
+                    description: "Showcase website for artisanal butcher Maison Bacherot (Burgundy).",
+                    tags: ["Personal Project", "React", "Vite", "Tailwind CSS v4", "Framer Motion", "GSAP"],
+                    link: "https://www.boucherie-mercurey.fr/"
                 },
             ],
         },
