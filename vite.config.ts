@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     Sitemap({
-      hostname: 'https://jordy-bacherot.vercel.app',
+      hostname: 'https://portfolio.jordy-bacherot.fr',
       generateRobotsTxt: false
     }),
   ],
