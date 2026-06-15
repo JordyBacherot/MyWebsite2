@@ -18,6 +18,7 @@ export interface ProjectItem {
     description: string;
     tags: string[];
     link?: string;
+    githubLink?: string;
 }
 
 export interface TranslationStructure {
@@ -154,14 +155,8 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "Création de chatbots RAG",
                     theme: "Intégration IA - Alternance",
-                    description: "Création de chatbots RAG pour l'assistance aux premières questions utilisateurs sur des logiciels spécifiques.",
+                    description: "Application permettant l'intégration de chatbots RAG dans des applications tierces via API, pour l'assistance aux premières questions utilisateurs sur des logiciels spécifiques.",
                     tags: ["Projet Professionnel", "LLM", "RAG", "LangChain", "LangGraph", "LangFuse", "VLLM"]
-                },
-                {
-                    title: "Ce site web",
-                    theme: "Développement Web - Personnel",
-                    description: "Site web personnel conçu pour présenter mes compétences et projets.",
-                    tags: ["Projet Personnel", "React", "TypeScript", "Tailwind", "Bun"]
                 },
                 {
                     title: "Algorithme de recommandation de jeux steams",
@@ -172,21 +167,31 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "Application fullstack Flutter + Hono de recommandation de jeux",
                     theme: "Développement Web - Académique",
-                    description: "Application fullstack de recommandation de jeux steams basé sur le projet d'Algorithme de recommandation de jeux steams. Application déployé sur un VPS avec docker. Si vous voulez en voir plus, consultez le projet GitHub : steam_reco_app",
-                    tags: ["Projet Académique", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "Déploiement - VPS", "CI/CD"]
+                    description: "Application fullstack de recommandation de jeux Steam basée sur l'algorithme ANN. Déployée sur un VPS avec Docker.",
+                    tags: ["Projet Académique", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "Déploiement - VPS", "CI/CD"],
+                    githubLink: "https://github.com/JordyBacherot/steam_reco_app"
                 },
                 {
                     title: "Deep Learning - Application de détection de scènes dangereuses en extèrieur pour personne malvoyante",
                     theme: "Deep Learning - Académique",
-                    description: "Application de détection d'éléments dangereux dans des environnements extérieurs pour personnes malvoyantes. Fine-tuning d'un modèle de vision mobile pour la détection d'obstacles. (basé sur les transformers). Si vous voulez en voir plus, consultez mon projet GitHub : DeepLearningProject_SceneHazardDetection",
+                    description: "Application de détection d'éléments dangereux en extérieur pour personnes malvoyantes. Fine-tuning d'un modèle de vision mobile pour la détection d'obstacles (transformer-based).",
                     tags: ["Projet Académique", "Python", "Pytorch", "Deep Learning", "CNN", "Transformers"],
-                    link: "https://scene-hazard-detection.vercel.app/"
+                    link: "https://scene-hazard-detection.vercel.app/",
+                    githubLink: "https://github.com/JordyBacherot/DeepLearningProject_SceneHazardDetection"
                 },
                 {
-                    title: "Création d'un chatbot (patient) d'entrainement aux examens de médecine ECOS",
-                    theme: "Intégration IA - Alternance",
-                    description: "Création d'un chatbot d'entrainement aux examens de médecine ECOS. Chatbot jouant le rôle d'un patient et répondant aux questions de l'étudiant/médecin. Evaluation automatique de la discussion.",
-                    tags: ["Projet Professionnel", "LLM", "LangChain", "LangFuse", "VLLM"]
+                    title: "Fine-Tuning LLM pour le Storytelling",
+                    theme: "LLM - Académique",
+                    description: "Pipeline ML end-to-end pour fine-tuner Qwen 2.5 7B sur la génération de scripts YouTube narratifs (EGO, Lemmino, Squeezie…). Projet d'apprentissage centré sur QLoRA 4-bit et Unsloth, de l'extraction jusqu'à l'évaluation LLM-as-Judge.",
+                    tags: ["Projet Académique", "Python", "LLM", "QLoRA", "Unsloth", "HuggingFace", "vLLM", "FastAPI"],
+                    link: "https://github.com/JordyBacherot/FineTunning_LLM_StoryTelling"
+                },
+                {
+                    title: "Maison Bacherot — Site Vitrine",
+                    theme: "Développement Web - Familial",
+                    description: "Site vitrine pour la boucherie artisanale Maison Bacherot (Bourgogne).",
+                    tags: ["Projet Personnel", "React", "Vite", "Tailwind CSS v4", "Framer Motion", "GSAP"],
+                    link: "https://www.boucherie-mercurey.fr/"
                 },
 
             ],
@@ -296,14 +301,8 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "RAG Chatbot Development",
                     theme: "AI Integration - Apprenticeship",
-                    description: "Development of RAG (Retrieval-Augmented Generation) chatbots to handle initial user queries regarding specific software.",
+                    description: "Application enabling RAG chatbot integration into third-party apps via API, handling initial user queries on specific software.",
                     tags: ["Professional Project", "LLM", "RAG", "LangChain", "LangGraph", "LangFuse", "VLLM"]
-                },
-                {
-                    title: "This Website",
-                    theme: "Web Development - Personal",
-                    description: "Personal website designed to showcase my skills and projects.",
-                    tags: ["Personal Project", "React", "TypeScript", "Tailwind", "Bun"]
                 },
                 {
                     title: "Steam Game Recommendation Algorithm",
@@ -314,21 +313,31 @@ export const translations: Record<Language, TranslationStructure> = {
                 {
                     title: "Fullstack Flutter + Hono Recommendation App",
                     theme: "Web Development - Academic",
-                    description: "Fullstack Steam game recommendation application based on the recommendation algorithm project. Deployed on a VPS using Docker. If you want to see more, check out the Github project : steam_reco_app",
-                    tags: ["Academic Project", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "VPS Deployment", "CI/CD"]
+                    description: "Fullstack Steam game recommendation app based on the ANN algorithm. Deployed on a VPS with Docker.",
+                    tags: ["Academic Project", "Flutter", "Dart", "TypeScript", "Hono", "Bun", "MariaDB", "Docker", "VPS Deployment", "CI/CD"],
+                    githubLink: "https://github.com/JordyBacherot/steam_reco_app"
                 },
                 {
                     title: "Deep Learning - Outdoor Hazard Detection for the Visually Impaired",
                     theme: "Deep Learning - Academic",
-                    description: "Hazard detection application for outdoor environments designed for visually impaired users. Fine-tuning of a mobile vision model for obstacle detection (transformer-based). If you want to see more, check out my Github project : DeepLearningProject_SceneHazardDetection",
+                    description: "Hazard detection app for outdoor environments designed for visually impaired users. Fine-tuning of a mobile vision model for obstacle detection (transformer-based).",
                     tags: ["Academic Project", "Python", "Pytorch", "Deep Learning", "CNN", "Transformers"],
-                    link: "https://scene-hazard-detection.vercel.app/"
+                    link: "https://scene-hazard-detection.vercel.app/",
+                    githubLink: "https://github.com/JordyBacherot/DeepLearningProject_SceneHazardDetection"
                 },
                 {
-                    title: "OSCE Medical Training Chatbot (Patient Sim)",
-                    theme: "AI Integration - Apprenticeship",
-                    description: "Creation of a training chatbot for ECOS medical exams. The chatbot acts as a patient, responding to student/doctor questions with automated conversation evaluation.",
-                    tags: ["Professional Project", "LLM", "LangChain", "LangFuse", "VLLM"]
+                    title: "LLM Fine-Tuning for Storytelling",
+                    theme: "LLM - Academic",
+                    description: "End-to-end ML pipeline to fine-tune Qwen 2.5 7B on narrative YouTube script generation (EGO, Lemmino, Squeezie style…). Learning project focused on 4-bit QLoRA and Unsloth, from extraction to LLM-as-Judge evaluation.",
+                    tags: ["Academic Project", "Python", "LLM", "QLoRA", "Unsloth", "HuggingFace", "vLLM", "FastAPI"],
+                    link: "https://github.com/JordyBacherot/FineTunning_LLM_StoryTelling"
+                },
+                {
+                    title: "Maison Bacherot — Showcase Website",
+                    theme: "Web Development - Family",
+                    description: "Showcase website for artisanal butcher Maison Bacherot (Burgundy).",
+                    tags: ["Personal Project", "React", "Vite", "Tailwind CSS v4", "Framer Motion", "GSAP"],
+                    link: "https://www.boucherie-mercurey.fr/"
                 },
             ],
         },

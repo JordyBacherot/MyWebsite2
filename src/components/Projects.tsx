@@ -75,17 +75,30 @@ const Projects = () => {
                                         </p>
                                     </div>
 
-                                    {project.link && (
-                                        <a 
-                                            href={project.link.startsWith('http') ? project.link : `https://${project.link}`} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer"
-                                            className="shrink-0 mt-auto px-6 py-2 bg-theme-primary text-theme-base font-bold rounded-full hover:bg-theme-glow hover:scale-105 transition-all duration-300"
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            {t.projects.seeProject}
-                                        </a>
-                                    )}
+                                    <div className="shrink-0 mt-auto flex flex-wrap gap-2 justify-center">
+                                        {project.link && (
+                                            <a
+                                                href={project.link.startsWith('http') ? project.link : `https://${project.link}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="px-5 py-2 bg-theme-primary text-theme-base font-bold rounded-full hover:bg-theme-glow hover:scale-105 transition-all duration-300 text-sm"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                {project.link.includes('github.com') ? 'GitHub' : t.projects.seeProject}
+                                            </a>
+                                        )}
+                                        {project.githubLink && (
+                                            <a
+                                                href={project.githubLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="px-5 py-2 border border-theme-primary/60 text-theme-primary font-bold rounded-full hover:bg-theme-primary/10 hover:scale-105 transition-all duration-300 text-sm"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                GitHub
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
