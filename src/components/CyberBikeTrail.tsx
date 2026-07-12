@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { gateCanvasAnimation } from '@/lib/canvasAnimationGate';
 
 interface CyberBikeTrailProps {
     variant?: 'desktop-horizontal' | 'mobile-vertical';
@@ -99,14 +100,24 @@ const CyberBikeTrail: React.FC<CyberBikeTrailProps> = ({ variant = 'desktop-hori
             ctx.fillStyle = '#FFFFFF';
             ctx.fill();
 
-            animationFrameId = requestAnimationFrame(render);
+            if (running) animationFrameId = requestAnimationFrame(render);
         };
 
-        render();
+        let running = false;
+        const startLoop = () => {
+            if (running) return;
+            running = true;
+            animationFrameId = requestAnimationFrame(render);
+        };
+        const stopLoop = () => {
+            running = false;
+            cancelAnimationFrame(animationFrameId);
+        };
+        const ungate = gateCanvasAnimation(canvas, startLoop, stopLoop);
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            cancelAnimationFrame(animationFrameId);
+            ungate();
         };
     }, []);
 

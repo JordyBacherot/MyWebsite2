@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, useInView } from "framer-motion";
 import { Linkedin, Github, Send } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -14,6 +14,9 @@ const Contact = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
     const containerRef = useRef<HTMLDivElement>(null);
+    const sectionRef = useRef<HTMLElement>(null);
+    // Suspend les animations en boucle quand la section est hors écran
+    const sectionInView = useInView(sectionRef, { margin: "20% 0px" });
 
     // Form states
     const [formData, setFormData] = useState({
@@ -78,13 +81,13 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="pt-24 pb-56 w-full mb-20 relative overflow-hidden">
+        <section id="contact" ref={sectionRef} className="pt-24 pb-56 w-full mb-20 relative overflow-hidden">
             {/* Desert Parallax Background (Dune universe only) */}
             {universe === 'dune' && <DesertParallax />}
 
             {/* Sand Storm Background Effect */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-                {particles.map((particle) => (
+                {sectionInView && particles.map((particle) => (
                     <motion.div
                         key={particle.id}
                         className="absolute w-1 h-1 bg-theme-primary rounded-full"
@@ -269,7 +272,7 @@ const Contact = () => {
                                                 }`}
                                         >
                                             {/* Animated background */}
-                                            {cooldown === 0 && (
+                                            {cooldown === 0 && sectionInView && (
                                                 <motion.div
                                                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                                                     animate={{

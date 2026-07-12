@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useUniverse } from '../contexts/UniverseContext';
+import { gateCanvasAnimation } from '@/lib/canvasAnimationGate';
 
 interface Particle {
     x: number;
@@ -172,14 +173,24 @@ const SandstormEffect = () => {
             }
             ctx.globalAlpha = 1.0; // Reset alpha
 
-            animationFrameId = requestAnimationFrame(animate);
+            if (running) animationFrameId = requestAnimationFrame(animate);
         };
 
-        animate();
+        let running = false;
+        const startLoop = () => {
+            if (running) return;
+            running = true;
+            animationFrameId = requestAnimationFrame(animate);
+        };
+        const stopLoop = () => {
+            running = false;
+            cancelAnimationFrame(animationFrameId);
+        };
+        const ungate = gateCanvasAnimation(canvas, startLoop, stopLoop);
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            cancelAnimationFrame(animationFrameId);
+            ungate();
         };
     }, [universe]);
 

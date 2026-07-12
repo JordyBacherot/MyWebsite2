@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { gateCanvasAnimation } from '@/lib/canvasAnimationGate';
 
 interface SandwormTrailProps {
     variant?: 'desktop-horizontal' | 'mobile-vertical';
@@ -428,14 +429,26 @@ const SandwormTrail = ({ variant = 'desktop-horizontal' }: SandwormTrailProps) =
                 }
             }
 
-            requestAnimationFrame(animate);
+            if (running) animationFrameId = requestAnimationFrame(animate);
         };
 
-        const animationId = requestAnimationFrame(animate);
+        let animationFrameId = 0;
+        let running = false;
+        const startLoop = () => {
+            if (running) return;
+            running = true;
+            lastFrameTime = 0;
+            animationFrameId = requestAnimationFrame(animate);
+        };
+        const stopLoop = () => {
+            running = false;
+            cancelAnimationFrame(animationFrameId);
+        };
+        const ungate = gateCanvasAnimation(canvas, startLoop, stopLoop);
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            cancelAnimationFrame(animationId);
+            ungate();
         };
     }, []);
 

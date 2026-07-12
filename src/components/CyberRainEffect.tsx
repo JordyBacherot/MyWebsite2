@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { gateCanvasAnimation } from '@/lib/canvasAnimationGate';
 
 const CyberRainEffect: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -67,14 +68,24 @@ const CyberRainEffect: React.FC = () => {
                 p.draw();
             });
 
-            animationFrameId = requestAnimationFrame(render);
+            if (running) animationFrameId = requestAnimationFrame(render);
         };
 
-        render();
+        let running = false;
+        const startLoop = () => {
+            if (running) return;
+            running = true;
+            animationFrameId = requestAnimationFrame(render);
+        };
+        const stopLoop = () => {
+            running = false;
+            cancelAnimationFrame(animationFrameId);
+        };
+        const ungate = gateCanvasAnimation(canvas, startLoop, stopLoop);
 
         return () => {
             window.removeEventListener('resize', resize);
-            cancelAnimationFrame(animationFrameId);
+            ungate();
         };
     }, []);
 
