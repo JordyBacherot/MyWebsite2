@@ -5,10 +5,12 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Linkedin, Github, Send } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
-import SideDecoration from "./SideDecoration";
+import { useUniverse } from "../contexts/UniverseContext";
+import DesertParallax from "./DesertParallax";
 
 const Contact = () => {
     const { t } = useLanguage();
+    const { universe } = useUniverse();
     const [isHovered, setIsHovered] = useState(false);
     const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -77,8 +79,8 @@ const Contact = () => {
 
     return (
         <section id="contact" className="py-24 w-full mb-20 relative overflow-hidden">
-            <SideDecoration side="left" variant="dune1" mode="storm" className="left-0 top-10" />
-            <SideDecoration side="right" variant="dune2" mode="storm" className="right-0 top-40" />
+            {/* Desert Parallax Background (Dune universe only) */}
+            {universe === 'dune' && <DesertParallax />}
 
             {/* Sand Storm Background Effect */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
