@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import SandstormEffect from "./SandstormEffect";
-import DesertParallax from "./DesertParallax";
+import HeroCinematic from "./HeroCinematic";
 import NightCityParallax from "./NightCityParallax";
 import CyberRainEffect from "./CyberRainEffect";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -26,14 +25,16 @@ const Hero = () => {
             {/* Layer 0: Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-theme-accent/10 rounded-full blur-[100px] pointer-events-none z-0" />
 
-            {/* Layer 1: Parallax Background */}
+            {/* Layer 1: Background (Dune: cinematic video / Cyberpunk: parallax) */}
             <div className="absolute inset-0 z-0">
-                {showEffects && (universe === 'dune' ? <DesertParallax /> : <NightCityParallax />)}
+                {universe === 'dune'
+                    ? <HeroCinematic />
+                    : showEffects && <NightCityParallax />}
             </div>
 
-            {/* Layer 2: Atmosphere overlay (Sandstorm / Cyber Rain) */}
+            {/* Layer 2: Atmosphere overlay (Cyber Rain only — the Dune universe uses the video) */}
             <div className="absolute inset-0 z-10 pointer-events-none">
-                {showEffects && (universe === 'dune' ? <SandstormEffect /> : <CyberRainEffect />)}
+                {universe === 'cyberpunk' && showEffects && <CyberRainEffect />}
             </div>
 
             {/* Layer 3: Content Container */}
