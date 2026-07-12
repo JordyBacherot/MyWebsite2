@@ -19,8 +19,8 @@ const HeroCinematic = () => {
 
     // Micro-parallax au scroll sur le fond permanent
     const { scrollY } = useScroll();
-    const scale = useTransform(scrollY, [0, 800], [1, 1.08]);
-    const y = useTransform(scrollY, [0, 800], [0, 40]);
+    const scale = useTransform(scrollY, [0, 800], [1, 1.18]);
+    const y = useTransform(scrollY, [0, 800], [0, 90]);
 
     useEffect(() => {
         if (phase !== "intro") return;

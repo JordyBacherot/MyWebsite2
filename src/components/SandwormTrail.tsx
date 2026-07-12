@@ -154,7 +154,7 @@ const SandwormTrail = ({ variant = 'desktop-horizontal' }: SandwormTrailProps) =
 
                 switch (currentState) {
                     case 'APPROACH':
-                        speed = isMobile ? 2.0 : 3.5;
+                        speed = isMobile ? 3.2 : 3.5;
                         wormOpacity = 0.1;
                         mouthOpen = 0;
                         headLift = 0;
@@ -199,7 +199,7 @@ const SandwormTrail = ({ variant = 'desktop-horizontal' }: SandwormTrailProps) =
                         break;
 
                     case 'LEAVE':
-                        speed = isMobile ? 1.0 : 1.5;
+                        speed = isMobile ? 1.8 : 1.5;
                         wormOpacity = Math.max(0.1, wormOpacity - 0.005);
                         mouthOpen = Math.max(0, mouthOpen - 0.02);
                         headLift = Math.max(0, headLift - 0.5);
