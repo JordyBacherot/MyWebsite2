@@ -1,30 +1,26 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, type Transition } from 'framer-motion';
+
+// Émergence en cascade : chaque couche monte en place à l'entrée dans le viewport
+const riseTransition = (delay: number): Transition => ({
+    duration: 1.2,
+    delay,
+    ease: [0.16, 1, 0.3, 1],
+});
 
 const DesertParallax = () => {
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start end", "end end"]
-    });
-
-    // Parallax transforms — les dunes émergent en couches quand la section entre à l'écran
-    // Background rises slowest
-    const yBack = useTransform(scrollYProgress, [0, 0.8], ["30%", "0%"]);
-    // Middle rises medium speed
-    const yMid = useTransform(scrollYProgress, [0, 0.8], ["50%", "0%"]);
-    // Front rises fastest
-    const yFront = useTransform(scrollYProgress, [0, 0.8], ["70%", "0%"]);
-
     return (
-        <div ref={ref} className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
             {/* Vignette Gradients (Smooth transition to page background) */}
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-theme-base to-transparent z-40" />
             <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-theme-base to-transparent z-40" />
 
             {/* Layer 1: Back Dunes (Darkest, Slowest) */}
             <motion.div
-                style={{ y: yBack, willChange: "transform" }}
+                initial={{ y: "35%", opacity: 0 }}
+                whileInView={{ y: "0%", opacity: 1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={riseTransition(0)}
+                style={{ willChange: "transform" }}
                 className="absolute bottom-0 left-0 w-full h-[75%] md:h-[105%] z-10"
             >
                 <svg viewBox="0 0 1440 320" className="w-full h-full preserve-3d" preserveAspectRatio="xMidYMax slice">
@@ -38,7 +34,11 @@ const DesertParallax = () => {
 
             {/* Layer 1.5: Realistic Mountain (Left side feature) */}
             <motion.div
-                style={{ y: yMid, willChange: "transform" }}
+                initial={{ y: "45%", opacity: 0 }}
+                whileInView={{ y: "0%", opacity: 1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={riseTransition(0.2)}
+                style={{ willChange: "transform" }}
                 className="absolute bottom-[-5%] left-[-5%] w-[120%] sm:w-[90%] md:w-[60%] lg:w-[45%] z-[15]"
             >
                 <svg viewBox="0 0 500 500" className="w-full h-auto drop-shadow-2xl" preserveAspectRatio="xMinYMax meet">
@@ -64,7 +64,11 @@ const DesertParallax = () => {
 
             {/* Layer 2: Middle Dunes (Medium, Medium Speed) */}
             <motion.div
-                style={{ y: yMid, willChange: "transform" }}
+                initial={{ y: "45%", opacity: 0 }}
+                whileInView={{ y: "0%", opacity: 1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={riseTransition(0.35)}
+                style={{ willChange: "transform" }}
                 className="absolute bottom-0 left-0 w-full h-[65%] md:h-[90%] z-20"
             >
                 <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="xMidYMax slice">
@@ -78,7 +82,11 @@ const DesertParallax = () => {
 
             {/* Layer 3: Front Dunes (Lightest, Fastest) */}
             <motion.div
-                style={{ y: yFront, willChange: "transform" }}
+                initial={{ y: "55%", opacity: 0 }}
+                whileInView={{ y: "0%", opacity: 1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={riseTransition(0.5)}
+                style={{ willChange: "transform" }}
                 className="absolute bottom-0 left-0 w-full h-[50%] md:h-[70%] z-30"
             >
                 <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="xMidYMax slice">
