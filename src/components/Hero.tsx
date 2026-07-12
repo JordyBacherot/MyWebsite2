@@ -44,7 +44,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
-                        className="font-heading text-3xl md:text-5xl lg:text-7xl font-bold text-theme-primary mb-4 tracking-[0.1em] uppercase"
+                        className="font-heading text-3xl md:text-5xl lg:text-7xl font-bold text-theme-primary mb-4 tracking-[0.1em] uppercase [text-shadow:0_2px_12px_rgba(0,0,0,0.85),0_0_30px_hsl(var(--theme-glow)/0.6),0_0_70px_hsl(var(--theme-accent)/0.4)]"
                     >
                         {t.hero.name}
                     </motion.h1>
@@ -52,7 +52,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="max-w-2xl mx-auto text-lg md:text-xl text-theme-surface drop-shadow-md font-medium leading-relaxed"
+                        className="max-w-2xl mx-auto text-lg md:text-xl text-theme-surface font-medium leading-relaxed [text-shadow:0_1px_8px_rgba(0,0,0,0.9),0_0_24px_hsl(var(--theme-glow)/0.35)]"
                     >
                         {t.hero.description}
                     </motion.h2>
@@ -64,10 +64,10 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.8 }}
                     className="flex flex-col md:flex-row gap-6"
                 >
-                    <Button asChild className="bg-theme-accent text-white hover:bg-theme-glow hover:animate-spice-glow transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
+                    <Button asChild className="bg-theme-accent/70 backdrop-blur-sm text-white hover:bg-theme-glow/90 hover:animate-spice-glow transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
                         <a href="#projets">{t.hero.viewProjects}</a>
                     </Button>
-                    <Button asChild variant="outline" className="bg-theme-base border-theme-primary text-theme-primary hover:bg-theme-primary/10 hover:text-theme-surface hover:border-theme-accent transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
+                    <Button asChild variant="outline" className="bg-theme-base/40 backdrop-blur-sm border-theme-primary text-theme-primary hover:bg-theme-primary/10 hover:text-theme-surface hover:border-theme-accent transition-all duration-300 rounded-full px-10 py-7 text-lg tracking-widest uppercase font-bold">
                         <a href="#contact">{t.hero.contactMe}</a>
                     </Button>
                 </motion.div>

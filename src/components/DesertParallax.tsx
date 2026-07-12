@@ -5,16 +5,16 @@ const DesertParallax = () => {
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: ["start start", "end start"]
+        offset: ["start end", "end end"]
     });
 
-    // Parallax transforms
-    // Background moves slowest
-    const yBack = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-    // Middle moves medium speed
-    const yMid = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
-    // Front moves fastest
-    const yFront = useTransform(scrollYProgress, [0, 1], ["0%", "120%"]);
+    // Parallax transforms — les dunes émergent en couches quand la section entre à l'écran
+    // Background rises slowest
+    const yBack = useTransform(scrollYProgress, [0, 0.8], ["30%", "0%"]);
+    // Middle rises medium speed
+    const yMid = useTransform(scrollYProgress, [0, 0.8], ["50%", "0%"]);
+    // Front rises fastest
+    const yFront = useTransform(scrollYProgress, [0, 0.8], ["70%", "0%"]);
 
     return (
         <div ref={ref} className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -30,7 +30,7 @@ const DesertParallax = () => {
                 <svg viewBox="0 0 1440 320" className="w-full h-full preserve-3d" preserveAspectRatio="xMidYMax slice">
                     <path
                         fill="#8a4c22" // Darker rust
-                        fillOpacity="0.5"
+                        fillOpacity="0.65"
                         d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,197.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
                     ></path>
                 </svg>
@@ -89,7 +89,7 @@ const DesertParallax = () => {
                     ></path>
                 </svg>
                 {/* Gradient overlay for smooth transition to page background */}
-                <div className="absolute -bottom-1 left-0 w-full h-48 bg-gradient-to-t from-theme-base via-theme-base/90 to-transparent" />
+                <div className="absolute -bottom-1 left-0 w-full h-24 bg-gradient-to-t from-theme-base via-theme-base/60 to-transparent" />
             </motion.div>
         </div>
     );

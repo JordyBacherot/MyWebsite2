@@ -78,7 +78,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-24 w-full mb-20 relative overflow-hidden">
+        <section id="contact" className="pt-24 pb-56 w-full mb-20 relative overflow-hidden">
             {/* Desert Parallax Background (Dune universe only) */}
             {universe === 'dune' && <DesertParallax />}
 
