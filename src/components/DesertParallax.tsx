@@ -39,7 +39,7 @@ const DesertParallax = () => {
                 viewport={{ once: true, amount: 0.15 }}
                 transition={riseTransition(0.2)}
                 style={{ willChange: "transform" }}
-                className="absolute bottom-[-5%] left-[-5%] w-[120%] sm:w-[90%] md:w-[60%] lg:w-[45%] z-[15]"
+                className="absolute bottom-[-5%] left-[-5%] w-[120%] sm:w-[90%] md:w-[60%] lg:w-[45%] z-[35]"
             >
                 <svg viewBox="0 0 500 500" className="w-full h-auto drop-shadow-2xl" preserveAspectRatio="xMinYMax meet">
                     {/* Mountain Base (Darkest) */}
